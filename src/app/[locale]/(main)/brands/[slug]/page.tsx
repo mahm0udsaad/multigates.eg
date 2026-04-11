@@ -7,7 +7,17 @@ import {
   getCatalogsByBrand,
   getCertificatesByBrand,
 } from "@/lib/data";
-import { FileText, Award, ArrowLeft, ExternalLink, Lock } from "lucide-react";
+import {
+  FileText,
+  Award,
+  ArrowLeft,
+  ExternalLink,
+  Lock,
+  Package,
+  Mail,
+  Phone,
+} from "lucide-react";
+import Image from "next/image";
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;
@@ -29,55 +39,98 @@ export default async function BrandDetailPage({ params }: Props) {
   ]);
 
   const isAr = locale === "ar";
+  const hasContent =
+    products.length > 0 || catalogs.length > 0 || certificates.length > 0;
 
   return (
     <div className="min-h-screen bg-white">
       {/* Brand Header */}
-      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5180] text-white py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-4">
-            <Link
-              href="/brands"
-              className="text-[#c8a951] hover:underline inline-flex items-center gap-1"
-            >
-              <ArrowLeft size={16} />
-              {t("title")}
-            </Link>
-          </div>
-          <h1 className="text-4xl font-bold">
-            {isAr ? brand.name_ar || brand.name : brand.name}
-          </h1>
-          {brand.description && (
-            <p className="mt-2 text-gray-300">
-              {isAr ? brand.description_ar || brand.description : brand.description}
-            </p>
-          )}
-        </div>
-      </div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f1f35] text-white">
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(#c8a951 1px, transparent 1px), linear-gradient(90deg, #c8a951 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
+        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl bg-[#c8a951]/20" />
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          <Link
+            href="/brands"
+            className="inline-flex items-center gap-1.5 text-[#c8a951] hover:text-white transition-colors mb-6 text-sm font-medium"
+          >
+            <ArrowLeft size={16} className="rtl:rotate-180" />
+            {t("title")}
+          </Link>
+          <div className="flex items-start gap-6">
+            {brand.logo_url ? (
+              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white/95 p-3 shadow-xl flex-shrink-0">
+                <Image
+                  src={brand.logo_url}
+                  alt={brand.name}
+                  fill
+                  sizes="112px"
+                  className="object-contain p-2"
+                />
+              </div>
+            ) : (
+              <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-[#c8a951] flex-shrink-0 flex items-center justify-center shadow-xl">
+                <span className="text-3xl md:text-4xl font-black text-[#1e3a5f] tracking-tight">
+                  {brand.name.substring(0, 3).toUpperCase()}
+                </span>
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <span className="inline-block text-[11px] font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
+                Authorized Distributor
+              </span>
+              <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+                {isAr ? brand.name_ar || brand.name : brand.name}
+              </h1>
+              {brand.description && (
+                <p className="mt-3 text-gray-300 max-w-2xl leading-relaxed">
+                  {isAr
+                    ? brand.description_ar || brand.description
+                    : brand.description}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
         {/* Products Section */}
         {products.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-[#1e3a5f] mb-8">
-              {t("products")} ({products.length})
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-8">
+              {t("products")}{" "}
+              <span className="text-[#c8a951]">({products.length})</span>
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-[#c8a951] hover:shadow-lg transition-all duration-300"
+                  className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#c8a951]/60 hover:shadow-lg transition-all duration-300"
                 >
-                  {product.image_url && (
-                    <div className="w-full h-40 bg-gray-100 rounded mb-4 flex items-center justify-center overflow-hidden">
-                      <img
+                  {product.image_url ? (
+                    <div className="relative w-full h-44 bg-gray-50 rounded-lg mb-4 overflow-hidden">
+                      <Image
                         src={product.image_url}
                         alt={product.name}
-                        className="max-h-full object-contain"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-contain p-3"
                       />
                     </div>
+                  ) : (
+                    <div className="w-full h-44 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                      <Package size={40} className="text-gray-300" />
+                    </div>
                   )}
-                  <h3 className="text-lg font-bold text-[#1e3a5f]">
+                  <h3 className="text-base font-semibold text-[#1e3a5f] leading-tight">
                     {isAr ? product.name_ar || product.name : product.name}
                   </h3>
                 </div>
@@ -89,19 +142,22 @@ export default async function BrandDetailPage({ params }: Props) {
         {/* Catalogs Section */}
         {catalogs.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-[#1e3a5f] mb-8">
-              {t("catalogs")} ({catalogs.length})
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-8">
+              {t("catalogs")}{" "}
+              <span className="text-[#c8a951]">({catalogs.length})</span>
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {catalogs.map((catalog) => (
                 <div
                   key={catalog.id}
-                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-[#c8a951] hover:shadow-lg transition-all duration-300"
+                  className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#c8a951]/60 hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-[#c8a951]" />
-                      <h3 className="text-lg font-bold text-[#1e3a5f]">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-lg bg-[#c8a951]/10 flex items-center justify-center flex-shrink-0">
+                        <FileText className="w-5 h-5 text-[#c8a951]" />
+                      </div>
+                      <h3 className="text-base font-semibold text-[#1e3a5f] truncate">
                         {isAr
                           ? catalog.title_ar || catalog.title
                           : catalog.title}
@@ -113,14 +169,14 @@ export default async function BrandDetailPage({ params }: Props) {
                           href={catalog.external_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#c8a951] text-[#1e3a5f] font-semibold rounded hover:bg-opacity-90 transition-all"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#c8a951] text-[#1e3a5f] font-semibold rounded-lg hover:bg-[#b89742] transition-colors text-sm"
                         >
-                          <ExternalLink size={16} />
+                          <ExternalLink size={14} />
                           {t("viewProducts")}
                         </a>
                       ) : (
-                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-600 font-semibold rounded">
-                          <Lock size={16} />
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-600 font-semibold rounded-lg text-sm">
+                          <Lock size={14} />
                           View Only
                         </span>
                       )}
@@ -135,26 +191,29 @@ export default async function BrandDetailPage({ params }: Props) {
         {/* Certificates Section */}
         {certificates.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-[#1e3a5f] mb-8">
-              {t("certificates")} ({certificates.length})
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-8">
+              {t("certificates")}{" "}
+              <span className="text-[#c8a951]">({certificates.length})</span>
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {certificates.map((certificate) => (
                 <div
                   key={certificate.id}
-                  className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-[#c8a951] hover:shadow-lg transition-all duration-300"
+                  className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#c8a951]/60 hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div className="flex items-center gap-3">
-                      <Award className="w-5 h-5 text-[#c8a951]" />
-                      <h3 className="text-lg font-bold text-[#1e3a5f]">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-lg bg-[#c8a951]/10 flex items-center justify-center flex-shrink-0">
+                        <Award className="w-5 h-5 text-[#c8a951]" />
+                      </div>
+                      <h3 className="text-base font-semibold text-[#1e3a5f] truncate">
                         {isAr
                           ? certificate.title_ar || certificate.title
                           : certificate.title}
                       </h3>
                     </div>
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-600 font-semibold rounded">
-                      <Lock size={16} />
+                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-600 font-semibold rounded-lg text-sm">
+                      <Lock size={14} />
                       View Only
                     </span>
                   </div>
@@ -165,15 +224,46 @@ export default async function BrandDetailPage({ params }: Props) {
         )}
 
         {/* Empty State */}
-        {products.length === 0 &&
-          catalogs.length === 0 &&
-          certificates.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-600 text-lg">
-                No data available for this brand yet.
-              </p>
+        {!hasContent && (
+          <div className="max-w-3xl mx-auto">
+            <div className="relative bg-gradient-to-br from-[#1e3a5f]/5 to-[#c8a951]/5 border border-gray-200 rounded-2xl p-8 md:p-12 text-center overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#c8a951]/10 blur-3xl" />
+              <div className="relative">
+                <div className="w-16 h-16 rounded-2xl bg-[#c8a951]/15 text-[#c8a951] flex items-center justify-center mx-auto mb-5">
+                  <Package size={28} />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-3">
+                  {brand.name} catalog is being prepared
+                </h2>
+                <p className="text-gray-600 mb-8 max-w-xl mx-auto leading-relaxed">
+                  We&apos;re finalizing the product listing, technical catalog,
+                  and distribution certificates for {brand.name}. In the
+                  meantime, our team can share complete product information and
+                  availability on request.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-[#c8a951] text-[#1e3a5f] hover:bg-[#b89742] transition-colors"
+                  >
+                    <Mail size={16} />
+                    Request {brand.name} catalog
+                  </Link>
+                  <a
+                    href="tel:+20227731690"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-[#1e3a5f]/15 text-[#1e3a5f] hover:border-[#1e3a5f]/40 hover:bg-[#1e3a5f]/5 transition-colors"
+                  >
+                    <Phone size={16} />
+                    +2 02 27731690
+                  </a>
+                </div>
+                <p className="mt-6 text-xs uppercase tracking-wider text-gray-500">
+                  Authorized distributor · Multi Gates · Since 1995
+                </p>
+              </div>
             </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );

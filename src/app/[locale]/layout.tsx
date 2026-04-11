@@ -6,11 +6,28 @@ import { routing } from "@/i18n/routing";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Multi Gates for Industrial Development",
+  title: {
+    default: "Multi Gates for Industrial Development",
+    template: "%s | Multi Gates",
+  },
   description:
-    "Leading supplier of bearings, belts, chains, and industrial components in Egypt and the Middle East. Authorized distributor for NTN, NSK, Timken, and 14+ international brands.",
+    "Authorized distributor for world-class bearings, belts, chains, and industrial components in Egypt and the Middle East. Serving 18+ industries since 1995.",
   keywords:
-    "bearings, industrial components, Egypt, NTN, NSK, Timken, STC-STEYR, KSM, Kinex, JIB, IKO",
+    "bearings, industrial components, Egypt, NTN, SNR, Timken, STC-STEYR, KSM, Kinex, JIB, IKO, DKF, Quaval",
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+    apple: "/logo.png",
+    shortcut: "/logo.png",
+  },
+  openGraph: {
+    title: "Multi Gates for Industrial Development",
+    description:
+      "Authorized distributor for world-class bearings and industrial components in Egypt. Since 1995.",
+    images: ["/logo.png"],
+    type: "website",
+  },
 };
 
 export function generateStaticParams() {

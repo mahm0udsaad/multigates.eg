@@ -1,0 +1,114 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { Lock } from 'lucide-react';
+
+interface ProtectedViewerProps {
+  src: string;
+  title?: string;
+  className?: string;
+}
+
+export function ProtectedViewer({ src, title = 'Document', className = '' }: ProtectedViewerProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    const container = containerRef.current;
+
+    if (!iframe || !container) return;
+
+    // Disable right-click on the iframe
+    const disableRightClick = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Disable keyboard shortcuts for printing and saving
+    const disableKeyboard = (e: KeyboardEvent) => {
+      // Disable Ctrl+P, Ctrl+S, Cmd+P, Cmd+S
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 's' || e.key === 'P' || e.key === 'S')) {
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    };
+
+    // Add event listeners to the iframe
+    iframe.addEventListener('contextmenu', disableRightClick);
+    iframe.addEventListener('keydown', disableKeyboard);
+    container.addEventListener('keydown', disableKeyboard);
+
+    // Inject CSS to disable printing when iframe loads
+    iframe.onload = () => {
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (iframeDoc) {
+          // Add print-disable stylesheet
+          const style = iframeDoc.createElement('style');
+          style.textContent = `
+            @media print {
+              body * {
+                display: none !important;
+              }
+              body::before {
+                content: "Printing is not allowed for this document" !important;
+                display: block !important;
+              }
+            }
+            body {
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+          `;
+          iframeDoc.head.appendChild(style);
+        }
+      } catch (e) {
+        // Cross-origin iframes may throw errors, this is expected
+        console.warn('Unable to inject protection styles (cross-origin document)');
+      }
+    };
+
+    return () => {
+      iframe.removeEventListener('contextmenu', disableRightClick);
+      iframe.removeEventListener('keydown', disableKeyboard);
+      container.removeEventListener('keydown', disableKeyboard);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className={`relative bg-gray-100 rounded-lg overflow-hidden ${className}`}>
+      {/* Watermark Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center opacity-10">
+        <div className="text-center">
+          <Lock size={80} className="text-gray-800 mx-auto mb-4" />
+          <p className="text-4xl font-bold text-gray-800 transform -rotate-45">PROTECTED</p>
+          <p className="text-xl text-gray-600 mt-4">© Multi Gates</p>
+        </div>
+      </div>
+
+      {/* Protected Message */}
+      <div className="absolute top-4 right-4 z-20 bg-orange-100 border border-orange-400 text-orange-800 px-4 py-2 rounded-lg flex items-center space-x-2 text-sm">
+        <Lock size={16} />
+        <span>Download & printing disabled</span>
+      </div>
+
+      {/* PDF Viewer */}
+      <iframe
+        ref={iframeRef}
+        src={src}
+        title={title}
+        className="w-full h-screen border-0"
+        onContextMenu={(e) => e.preventDefault()}
+        sandbox="allow-same-origin"
+        style={{
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+        } as React.CSSProperties}
+      />
+    </div>
+  );
+}

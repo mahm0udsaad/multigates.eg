@@ -1,0 +1,324 @@
+{
+  "common": {
+    "companyName": "Multi Gates for Industrial Development",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "contactUs": "Contact Us",
+    "learnMore": "Learn More",
+    "search": "Search",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "backToHome": "Back to Home",
+    "downloadProtected": "This document is view-only and cannot be downloaded."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "brands": "Brands",
+    "partners": "Partners",
+    "industries": "Industries",
+    "services": "Services",
+    "media": "Media",
+    "about": "About Us",
+    "contact": "Contact",
+    "more": "More",
+    "b2b": "B2B",
+    "investment": "Investment",
+    "trademarks": "Trademarks",
+    "careers": "Careers",
+    "blog": "Blog",
+    "news": "News"
+  },
+  "home": {
+    "hero": {
+      "title": "Your Trusted Partner in Industrial Solutions",
+      "subtitle": "Leading supplier of bearings, belts, chains, and industrial components in Egypt and the Middle East",
+      "cta": "Explore Products"
+    },
+    "brands": {
+      "title": "Our Brands",
+      "subtitle": "We are authorized distributors for world-renowned bearing and industrial component manufacturers"
+    },
+    "industries": {
+      "title": "Industries We Serve",
+      "subtitle": "Providing reliable industrial solutions across diverse sectors"
+    },
+    "why": {
+      "title": "Why Choose Multi Gates?"
+    },
+    "features": {
+      "authorized": {
+        "title": "Authorized Distributor",
+        "description": "Official authorized dealer for 17+ international brands"
+      },
+      "range": {
+        "title": "Wide Product Range",
+        "description": "Over 100 product types across bearings, belts, chains, and more"
+      },
+      "support": {
+        "title": "Expert Support",
+        "description": "Decades of experience in industrial components and solutions"
+      },
+      "industry": {
+        "title": "Multi-Industry",
+        "description": "Serving 18+ industries from cement to pharmaceuticals"
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Contact our team to find the right industrial components for your needs",
+      "button": "Contact Us"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "Browse our comprehensive range of industrial components",
+    "categories": "Categories",
+    "byBrand": "Products by Brand",
+    "catalog": "Catalog",
+    "viewCatalog": "View Catalog",
+    "certificate": "Certificate",
+    "viewCertificate": "View Certificate"
+  },
+  "brands": {
+    "title": "Our Brands",
+    "subtitle": "Authorized distributor for world-class industrial brands",
+    "products": "Products",
+    "catalogs": "Catalogs",
+    "certificates": "Certificates",
+    "viewProducts": "View Products"
+  },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "Trusted partnerships with leading industrial brands worldwide",
+    "viewProducts": "View Products",
+    "noPartners": "No partners available at the moment."
+  },
+  "industries": {
+    "title": "Industries We Serve",
+    "subtitle": "Providing industrial solutions tailored to your sector's needs",
+    "description": "Explore the diverse industries we serve with our comprehensive range of industrial components",
+    "cardDescription": "Industrial bearing and component solutions",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us for Custom Solutions",
+    "ctaTitle": "Don't see your industry?",
+    "ctaDescription": "Need specialized industrial components for your sector? Our team of experts is ready to help you find the perfect solution."
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Comprehensive industrial solutions and support services for our valued clients",
+    "technicalSupport": "Technical Support & After-Sales Services",
+    "catalogs": "Catalogs & Technical Documentation",
+    "shipping": "Shipping & Delivery Service",
+    "importServices": "Import Services for Third-Party",
+    "importServicesDesc": "We provide import services for bearings on behalf of commercial and industrial companies, charging reasonable and fair commissions.",
+    "stockAtSite": "Stock at Customer Site",
+    "stockAtSiteDesc": "We provide and manage inventory at the client's location based on their requirements, ensuring continuous availability of products.",
+    "partnerBrands": "Partner Brands",
+    "partnerBrandsDesc": "This service allows trading companies, distributors and importers to showcase products that are original, high-quality, and of recent production through our marketplace.",
+    "crossReference": "Cross Reference",
+    "crossReferenceDesc": "We provide a cross-reference service that helps clients and partners identify equivalent bearings from different brands, ensuring compatibility and reliable performance.",
+    "failureAnalysis": "Failure Analysis",
+    "interchangeCatalog": "Interchange Catalog",
+    "interchangeCatalogDesc": "Our comprehensive interchange catalog helps you find compatible bearings across different brands and specifications.",
+    "comingSoon": "Coming Soon",
+    "ctaTitle": "Need a Custom Service?",
+    "ctaDescription": "Contact our team to discuss your specific requirements and how we can help.",
+    "ctaButton": "Contact Us"
+  },
+  "b2b": {
+    "title": "B2B Services & Partnership Opportunities",
+    "subtitle": "We are proud to offer tailored solutions for our business partners, distributors, and commercial clients",
+    "item1": {
+      "title": "Competitive Pricing",
+      "description": "We provide fair and competitive pricing for orders from traders, commercial companies, and distributors, with flexible payment terms ranging from 6 to 18 months, in cooperation with major Egyptian banks."
+    },
+    "item2": {
+      "title": "Distribution Requests",
+      "description": "We welcome professional distribution requests, ensuring fair and mutually beneficial arrangements for all parties involved."
+    },
+    "item3": {
+      "title": "Partner Products",
+      "description": "We are open to showcasing the products of distributors and trading companies on our platform, provided they are original, recently manufactured, and meet the required quality standards, with reasonable and fair commissions."
+    },
+    "item4": {
+      "title": "Technical Support",
+      "description": "We offer complimentary technical support to our traders and commercial clients, provided they are our registered customers."
+    },
+    "item5": {
+      "title": "Catalogs & Technical Documents",
+      "description": "Upon request, we provide product catalogs and technical documentation to support our business partners in their operations."
+    },
+    "ctaTitle": "Ready to Partner With Us?",
+    "ctaDescription": "Let's discuss how we can work together to serve the industrial market.",
+    "ctaButton": "Get in Touch"
+  },
+  "investment": {
+    "title": "Investment Opportunity",
+    "subtitle": "Join us in expanding our industrial bearings business in Egypt and beyond",
+    "description": "We welcome strategic investors to join us in expanding our industrial bearings business in Egypt and beyond. Our company is committed to transparency, sustainable growth, and creating long-term value for our partners.",
+    "descriptionHighlight": "Our company is committed to transparency, sustainable growth, and creating long-term value for our partners.",
+    "highlight1": {
+      "title": "Market Expansion",
+      "description": "Growing demand for industrial bearings and components across Egypt and the MENA region."
+    },
+    "highlight2": {
+      "title": "Global Reach",
+      "description": "Authorized partnerships with 17+ international brands providing access to premium products."
+    },
+    "highlight3": {
+      "title": "Strategic Focus",
+      "description": "Serving 18+ industrial sectors with comprehensive product solutions and technical expertise."
+    },
+    "highlight4": {
+      "title": "Innovation & Performance",
+      "description": "Continuous improvement in services, digital presence, and customer experience."
+    },
+    "ctaTitle": "Interested in Investing?",
+    "ctaDescription": "Contact us to learn more about partnership and investment opportunities.",
+    "ctaButton": "Contact Us",
+    "trustLabel": "Trusted by industries across Egypt and the Middle East",
+    "trustValue": "17+ International Brands | 18+ Industries | 100+ Products"
+  },
+  "trademarks": {
+    "title": "Our Trademarks",
+    "subtitle": "Multi Gates owns and manages proprietary industrial brands",
+    "ksmTitle": "KSM",
+    "quavalTitle": "Quaval",
+    "certificatesButton": "View Certificates",
+    "certificatePlaceholder": "Certificate images will be displayed here",
+    "certificateInfo": "Click to view the official trademark certificates",
+    "trademarkOwner": "Owned by Multi Gates for Industrial Development",
+    "aboutTrademarksTitle": "About Our Trademarks",
+    "aboutTrademarksText1": "Multi Gates for Industrial Development is proud to own and manage proprietary trademarks in the industrial bearings sector.",
+    "aboutTrademarksText2": "Our trademarks represent our commitment to quality and reliability in the industrial components market."
+  },
+  "careers": {
+    "title": "Careers",
+    "subtitle": "Join our team and be part of Egypt's leading industrial components company",
+    "personalInfoTitle": "Personal Information",
+    "contactInfoTitle": "Contact Information",
+    "educationTitle": "Education",
+    "employmentTitle": "Employment",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "postalCode": "Postal Code",
+    "postalCodePlaceholder": "Enter postal code",
+    "city": "City",
+    "cityPlaceholder": "Enter your city",
+    "country": "Country",
+    "countryPlaceholder": "Enter your country",
+    "nationality": "Nationality",
+    "nationalityPlaceholder": "Enter your nationality",
+    "landPhone": "Land Phone",
+    "landPhonePlaceholder": "+2 02 XXXXXXXX",
+    "cellPhone": "Cell Phone",
+    "cellPhonePlaceholder": "+2 010 XXXXXXXX",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "currentJob": "Current Job",
+    "currentJobPlaceholder": "Enter your current job title",
+    "currentSalary": "Current Salary",
+    "currentSalaryPlaceholder": "Enter current salary",
+    "certificates": "Certificates",
+    "certificatesPlaceholder": "List your professional certificates",
+    "educationQualification": "Education Qualification",
+    "educationQualificationPlaceholder": "Enter your highest qualification",
+    "dateOfBirth": "Date of Birth",
+    "graduationYear": "Graduation Year",
+    "graduationYearPlaceholder": "e.g. 2020",
+    "yearsOfExperience": "Years of Experience",
+    "yearsOfExperiencePlaceholder": "Enter years of experience",
+    "expectedSalary": "Expected Salary",
+    "expectedSalaryPlaceholder": "Enter expected salary",
+    "submitButton": "Submit Application",
+    "successTitle": "Application Submitted!",
+    "successMessage": "Thank you for your interest. We will review your application and get back to you.",
+    "requiredFieldsError": "Please fill in all required fields."
+  },
+  "blog": {
+    "title": "Blog",
+    "comingSoon": "Coming Soon",
+    "comingSoonDesc": "Stay tuned for industry insights, technical articles, and company updates."
+  },
+  "news": {
+    "title": "News",
+    "comingSoon": "Coming Soon",
+    "comingSoonDesc": "Latest news about our company, new partnerships, and industry developments."
+  },
+  "media": {
+    "title": "Media Gallery",
+    "subtitle": "Explore our products, facilities, and brand showcase",
+    "description": "Browse through our collection of product images, showroom, and company photos",
+    "all": "All",
+    "products": "Products",
+    "company": "Company",
+    "showroom": "Showroom",
+    "noMedia": "No media found in this category.",
+    "viewDetails": "View Details"
+  },
+  "about": {
+    "title": "About Multi Gates",
+    "subtitle": "Your reliable partner for industrial development",
+    "story": "Our Story",
+    "storyText": "Multi Gates for Industrial Development is a leading Egyptian company specializing in the supply and distribution of high-quality industrial components. Based in Cairo, we serve as authorized distributors for over 17 internationally recognized brands, providing bearings, belts, chains, couplings, oil seals, lubricants, and other critical industrial components.",
+    "mission": "Our Mission",
+    "missionText": "To provide reliable, high-quality industrial components and solutions that help our clients maintain efficient operations across all industrial sectors in Egypt and the Middle East.",
+    "vision": "Our Vision",
+    "visionText": "To be the most trusted and comprehensive industrial components supplier in the MENA region, recognized for our product quality, technical expertise, and outstanding customer service.",
+    "officeAddress": "Office Address",
+    "showroomAddress": "Showroom Address"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with our team for inquiries, quotes, or technical support",
+    "formTitle": "Get in Touch",
+    "salutation": "Mr/Mrs",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "+20 xxx xxx xxxx",
+    "fax": "Fax",
+    "faxPlaceholder": "Enter fax number",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "website": "Website",
+    "websitePlaceholder": "www.yourcompany.com",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Enter company name",
+    "country": "Country",
+    "city": "City",
+    "cityPlaceholder": "Enter your city",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "postalCode": "Postal Code",
+    "postalCodePlaceholder": "Enter postal code",
+    "industrialSector": "Industrial Sector",
+    "preferredLanguage": "Preferred Language",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "hearAboutUs": "How did you hear about us?",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your inquiry...",
+    "notRobot": "I am not a robot",
+    "submitButton": "Send Message",
+    "successMessage": "Message Sent!",
+    "successDescription": "Thank you for your message! We will get back to you soon.",
+    "requiredFieldsNote": "Fields marked with * are required",
+    "requiredFieldsError": "Please fill in all required fields.",
+    "robotCheckError": "Please confirm you are not a robot.",
+    "contactInfo": "Contact Information",
+    "landPhone": "Land Phone",
+    "cellPhone": "Cell Phone",
+    "headOffice": "Head Office",
+    "store": "Store / Showroom"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "followUs": "Follow Us"
+  }
+}

@@ -15,7 +15,7 @@ import type {
 // ============================================
 export async function getBrands(): Promise<Brand[]> {
   const { data, error } = await supabase
-    .from("brands")
+    .from("eg_brands")
     .select("*")
     .eq("is_active", true)
     .order("sort_order");
@@ -25,7 +25,7 @@ export async function getBrands(): Promise<Brand[]> {
 
 export async function getBrandBySlug(slug: string): Promise<Brand | null> {
   const { data, error } = await supabase
-    .from("brands")
+    .from("eg_brands")
     .select("*")
     .eq("slug", slug)
     .single();
@@ -38,8 +38,8 @@ export async function getBrandBySlug(slug: string): Promise<Brand | null> {
 // ============================================
 export async function getProducts(): Promise<(Product & { brand: Brand })[]> {
   const { data, error } = await supabase
-    .from("products")
-    .select("*, brand:brands(*)")
+    .from("eg_products")
+    .select("*, brand:eg_brands(*)")
     .eq("is_active", true)
     .order("sort_order");
   if (error) throw error;
@@ -50,7 +50,7 @@ export async function getProductsByBrand(
   brandId: string
 ): Promise<Product[]> {
   const { data, error } = await supabase
-    .from("products")
+    .from("eg_products")
     .select("*")
     .eq("brand_id", brandId)
     .eq("is_active", true)
@@ -67,8 +67,8 @@ export async function getProductBySlug(
   if (!brand) return null;
 
   const { data, error } = await supabase
-    .from("products")
-    .select("*, brand:brands(*)")
+    .from("eg_products")
+    .select("*, brand:eg_brands(*)")
     .eq("brand_id", brand.id)
     .eq("slug", productSlug)
     .single();
@@ -81,7 +81,7 @@ export async function getProductBySlug(
 // ============================================
 export async function getCategories(): Promise<ProductCategory[]> {
   const { data, error } = await supabase
-    .from("product_categories")
+    .from("eg_product_categories")
     .select("*")
     .order("sort_order");
   if (error) throw error;
@@ -90,7 +90,7 @@ export async function getCategories(): Promise<ProductCategory[]> {
 
 export async function getTopLevelCategories(): Promise<ProductCategory[]> {
   const { data, error } = await supabase
-    .from("product_categories")
+    .from("eg_product_categories")
     .select("*")
     .is("parent_id", null)
     .order("sort_order");
@@ -105,7 +105,7 @@ export async function getCatalogsByBrand(
   brandId: string
 ): Promise<Catalog[]> {
   const { data, error } = await supabase
-    .from("catalogs")
+    .from("eg_catalogs")
     .select("*")
     .eq("brand_id", brandId)
     .order("sort_order");
@@ -120,7 +120,7 @@ export async function getCertificatesByBrand(
   brandId: string
 ): Promise<Certificate[]> {
   const { data, error } = await supabase
-    .from("certificates")
+    .from("eg_certificates")
     .select("*")
     .eq("brand_id", brandId);
   if (error) throw error;
@@ -132,7 +132,7 @@ export async function getCertificatesByBrand(
 // ============================================
 export async function getIndustries(): Promise<Industry[]> {
   const { data, error } = await supabase
-    .from("industries")
+    .from("eg_industries")
     .select("*")
     .eq("is_active", true)
     .order("sort_order");
@@ -144,7 +144,7 @@ export async function getIndustryBySlug(
   slug: string
 ): Promise<Industry | null> {
   const { data, error } = await supabase
-    .from("industries")
+    .from("eg_industries")
     .select("*")
     .eq("slug", slug)
     .single();
@@ -156,7 +156,7 @@ export async function getIndustryBySlug(
 // MEDIA
 // ============================================
 export async function getMedia(category?: string): Promise<Media[]> {
-  let query = supabase.from("media").select("*").order("sort_order");
+  let query = supabase.from("eg_media").select("*").order("sort_order");
   if (category && category !== "all") {
     query = query.eq("category", category);
   }
@@ -170,7 +170,7 @@ export async function getMedia(category?: string): Promise<Media[]> {
 // ============================================
 export async function getCompanyInfo(): Promise<CompanyInfo | null> {
   const { data, error } = await supabase
-    .from("company_info")
+    .from("eg_company_info")
     .select("*")
     .single();
   if (error) return null;

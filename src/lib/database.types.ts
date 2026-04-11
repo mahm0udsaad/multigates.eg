@@ -9,7 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      brands: {
+      eg_brands: {
         Row: {
           created_at: string
           description: string | null
@@ -51,7 +51,7 @@ export type Database = {
         }
         Relationships: []
       }
-      catalogs: {
+      eg_catalogs: {
         Row: {
           brand_id: string
           created_at: string
@@ -93,12 +93,12 @@ export type Database = {
             foreignKeyName: "catalogs_brand_id_fkey"
             columns: ["brand_id"]
             isOneToOne: false
-            referencedRelation: "brands"
+            referencedRelation: "eg_brands"
             referencedColumns: ["id"]
           },
         ]
       }
-      certificates: {
+      eg_certificates: {
         Row: {
           brand_id: string
           created_at: string
@@ -131,12 +131,12 @@ export type Database = {
             foreignKeyName: "certificates_brand_id_fkey"
             columns: ["brand_id"]
             isOneToOne: false
-            referencedRelation: "brands"
+            referencedRelation: "eg_brands"
             referencedColumns: ["id"]
           },
         ]
       }
-      company_info: {
+      eg_company_info: {
         Row: {
           about: string | null
           about_ar: string | null
@@ -190,7 +190,7 @@ export type Database = {
         }
         Relationships: []
       }
-      industries: {
+      eg_industries: {
         Row: {
           created_at: string
           description: string | null
@@ -229,7 +229,7 @@ export type Database = {
         }
         Relationships: []
       }
-      media: {
+      eg_media: {
         Row: {
           brand_id: string | null
           category: string | null
@@ -268,12 +268,12 @@ export type Database = {
             foreignKeyName: "media_brand_id_fkey"
             columns: ["brand_id"]
             isOneToOne: false
-            referencedRelation: "brands"
+            referencedRelation: "eg_brands"
             referencedColumns: ["id"]
           },
         ]
       }
-      product_categories: {
+      eg_product_categories: {
         Row: {
           created_at: string
           description: string | null
@@ -312,12 +312,12 @@ export type Database = {
             foreignKeyName: "product_categories_parent_id_fkey"
             columns: ["parent_id"]
             isOneToOne: false
-            referencedRelation: "product_categories"
+            referencedRelation: "eg_product_categories"
             referencedColumns: ["id"]
           },
         ]
       }
-      products: {
+      eg_products: {
         Row: {
           brand_id: string
           category_id: string | null
@@ -368,14 +368,14 @@ export type Database = {
             foreignKeyName: "products_brand_id_fkey"
             columns: ["brand_id"]
             isOneToOne: false
-            referencedRelation: "brands"
+            referencedRelation: "eg_brands"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "products_category_id_fkey"
             columns: ["category_id"]
             isOneToOne: false
-            referencedRelation: "product_categories"
+            referencedRelation: "eg_product_categories"
             referencedColumns: ["id"]
           },
         ]
@@ -399,11 +399,11 @@ export type Database = {
 export type Tables<T extends keyof Database["public"]["Tables"]> =
   Database["public"]["Tables"][T]["Row"]
 
-export type Brand = Tables<"brands">
-export type Product = Tables<"products">
-export type ProductCategory = Tables<"product_categories">
-export type Catalog = Tables<"catalogs">
-export type Certificate = Tables<"certificates">
-export type Industry = Tables<"industries">
-export type Media = Tables<"media">
-export type CompanyInfo = Tables<"company_info">
+export type Brand = Tables<"eg_brands">
+export type Product = Tables<"eg_products">
+export type ProductCategory = Tables<"eg_product_categories">
+export type Catalog = Tables<"eg_catalogs">
+export type Certificate = Tables<"eg_certificates">
+export type Industry = Tables<"eg_industries">
+export type Media = Tables<"eg_media">
+export type CompanyInfo = Tables<"eg_company_info">

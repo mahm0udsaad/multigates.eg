@@ -163,10 +163,10 @@ export default async function BrandDetailPage({ params }: Props) {
                           : catalog.title}
                       </h3>
                     </div>
-                    <div>
-                      {catalog.external_url ? (
+                    <div className="flex items-center gap-2">
+                      {(catalog.file_url || catalog.external_url) ? (
                         <a
-                          href={catalog.external_url}
+                          href={(catalog.external_url || catalog.file_url) ?? undefined}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 bg-[#c8a951] text-[#1e3a5f] font-semibold rounded-lg hover:bg-[#b89742] transition-colors text-sm"
@@ -180,6 +180,10 @@ export default async function BrandDetailPage({ params }: Props) {
                           View Only
                         </span>
                       )}
+                      <span className="inline-flex items-center gap-1 px-3 py-2 bg-gray-100 text-gray-500 rounded-lg text-xs">
+                        <Lock size={12} />
+                        {isAr ? "عرض فقط" : "No Download"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -195,30 +199,60 @@ export default async function BrandDetailPage({ params }: Props) {
               {t("certificates")}{" "}
               <span className="text-[#c8a951]">({certificates.length})</span>
             </h2>
-            <div className="space-y-3">
-              {certificates.map((certificate) => (
-                <div
-                  key={certificate.id}
-                  className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#c8a951]/60 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-lg bg-[#c8a951]/10 flex items-center justify-center flex-shrink-0">
-                        <Award className="w-5 h-5 text-[#c8a951]" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {certificates.map((certificate) => {
+                const isPdf = certificate.file_url?.toLowerCase().endsWith('.pdf');
+                return (
+                  <div
+                    key={certificate.id}
+                    className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[#c8a951]/60 hover:shadow-lg transition-all duration-300"
+                  >
+                    {/* Certificate preview */}
+                    {certificate.file_url && !isPdf && (
+                      <div className="relative w-full h-64 bg-gray-50">
+                        <Image
+                          src={certificate.file_url}
+                          alt={isAr ? certificate.title_ar || certificate.title : certificate.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-contain p-4"
+                        />
                       </div>
-                      <h3 className="text-base font-semibold text-[#1e3a5f] truncate">
-                        {isAr
-                          ? certificate.title_ar || certificate.title
-                          : certificate.title}
-                      </h3>
+                    )}
+                    {certificate.file_url && isPdf && (
+                      <div className="relative w-full h-64 bg-gray-50 flex items-center justify-center">
+                        <a
+                          href={certificate.file_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center gap-3 text-[#1e3a5f] hover:text-[#c8a951] transition-colors"
+                        >
+                          <FileText size={48} className="text-[#c8a951]" />
+                          <span className="font-semibold text-sm">{isAr ? "عرض الشهادة" : "View Certificate"}</span>
+                        </a>
+                      </div>
+                    )}
+                    <div className="p-5">
+                      <div className="flex items-center justify-between flex-wrap gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-lg bg-[#c8a951]/10 flex items-center justify-center flex-shrink-0">
+                            <Award className="w-5 h-5 text-[#c8a951]" />
+                          </div>
+                          <h3 className="text-base font-semibold text-[#1e3a5f] truncate">
+                            {isAr
+                              ? certificate.title_ar || certificate.title
+                              : certificate.title}
+                          </h3>
+                        </div>
+                        <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-100 text-gray-500 rounded-lg text-xs">
+                          <Lock size={12} />
+                          {isAr ? "عرض فقط" : "View Only"}
+                        </span>
+                      </div>
                     </div>
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-600 font-semibold rounded-lg text-sm">
-                      <Lock size={14} />
-                      View Only
-                    </span>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}

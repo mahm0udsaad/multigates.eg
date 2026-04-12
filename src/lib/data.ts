@@ -76,6 +76,21 @@ export async function getProductBySlug(
   return data as Product & { brand: Brand };
 }
 
+export async function getProductCountsByBrand(): Promise<
+  Record<string, number>
+> {
+  const { data, error } = await supabase
+    .from("eg_products")
+    .select("brand_id")
+    .eq("is_active", true);
+  if (error) throw error;
+  const counts: Record<string, number> = {};
+  for (const row of data ?? []) {
+    counts[row.brand_id] = (counts[row.brand_id] || 0) + 1;
+  }
+  return counts;
+}
+
 // ============================================
 // CATEGORIES
 // ============================================
@@ -101,6 +116,15 @@ export async function getTopLevelCategories(): Promise<ProductCategory[]> {
 // ============================================
 // CATALOGS
 // ============================================
+export async function getCatalogs(): Promise<(Catalog & { brand: Brand })[]> {
+  const { data, error } = await supabase
+    .from("eg_catalogs")
+    .select("*, brand:eg_brands(*)")
+    .order("sort_order");
+  if (error) throw error;
+  return (data as (Catalog & { brand: Brand })[]) ?? [];
+}
+
 export async function getCatalogsByBrand(
   brandId: string
 ): Promise<Catalog[]> {
@@ -116,6 +140,14 @@ export async function getCatalogsByBrand(
 // ============================================
 // CERTIFICATES
 // ============================================
+export async function getCertificates(): Promise<(Certificate & { brand: Brand })[]> {
+  const { data, error } = await supabase
+    .from("eg_certificates")
+    .select("*, brand:eg_brands(*)");
+  if (error) throw error;
+  return (data as (Certificate & { brand: Brand })[]) ?? [];
+}
+
 export async function getCertificatesByBrand(
   brandId: string
 ): Promise<Certificate[]> {

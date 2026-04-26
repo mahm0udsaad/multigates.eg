@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from 'next-intl/server';
 import { getBrands, getIndustries } from '@/lib/data';
 import { Link } from '@/i18n/routing';
+import { SafeImage } from '@/components/ui/SafeImage';
 import {
   Award,
   Package,
@@ -11,7 +12,6 @@ import {
   Globe2,
   Wrench,
 } from 'lucide-react';
-import Image from 'next/image';
 
 export default async function HomePage() {
   const t = await getTranslations('home');
@@ -162,7 +162,7 @@ export default async function HomePage() {
                   {brand.logo_url ? (
                     <>
                       <div className="relative w-28 h-16 mb-2 grayscale group-hover:grayscale-0 transition-all">
-                        <Image
+                        <SafeImage
                           src={brand.logo_url}
                           alt={brand.name}
                           fill
@@ -287,7 +287,7 @@ export default async function HomePage() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
                 {industry.image_url && (
-                  <Image
+                  <SafeImage
                     src={industry.image_url}
                     alt={isArabic ? (industry.name_ar || industry.name) : industry.name}
                     fill
@@ -427,7 +427,7 @@ export default async function HomePage() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
                     {industry.image_url && (
-                      <Image
+                      <SafeImage
                         src={industry.image_url}
                         alt={isArabic ? (industry.name_ar || industry.name) : industry.name}
                         fill

@@ -154,29 +154,34 @@ export default async function HomePage() {
                 <Link
                   key={`${brand.id}-${idx}`}
                   href={`/brands/${brand.slug}`}
-                  className="group bg-white rounded-xl p-5 border border-gray-100 hover:border-[#c8a951]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center w-[180px] h-[140px] relative overflow-hidden flex-shrink-0"
+                  className="group relative overflow-hidden bg-white rounded-xl border border-gray-100 hover:border-[#c8a951]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center w-[200px] h-[140px] flex-shrink-0"
                 >
-                  <div className="absolute inset-x-0 top-0 h-1 bg-[#c8a951] scale-x-0 group-hover:scale-x-100 transition-transform origin-left rtl:origin-right" />
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[#c8a951] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   {brand.logo_url ? (
-                    <div className="relative w-24 h-16 mb-2 grayscale group-hover:grayscale-0 transition-all">
-                      <Image
-                        src={brand.logo_url}
-                        alt={brand.name}
-                        fill
-                        sizes="120px"
-                        className="object-contain"
-                      />
-                    </div>
+                    <>
+                      <div className="relative w-28 h-16 mb-2 grayscale group-hover:grayscale-0 transition-all">
+                        <Image
+                          src={brand.logo_url}
+                          alt={brand.name}
+                          fill
+                          sizes="120px"
+                          className="object-contain"
+                        />
+                      </div>
+                      <p className="font-semibold text-xs text-[#1e3a5f] group-hover:text-[#c8a951] transition-colors">
+                        {brand.name}
+                      </p>
+                    </>
                   ) : (
-                    <div className="w-16 h-16 mx-auto mb-2 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#1e3a5f] to-[#1e3a5f]/80 text-white">
-                      <span className="text-xl font-black tracking-tight">
-                        {brand.name.substring(0, 3).toUpperCase()}
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1e3a5f] via-[#234a73] to-[#0f1f35] group-hover:from-[#c8a951] group-hover:via-[#b89742] group-hover:to-[#9a7d34] transition-all">
+                      <span className="text-3xl md:text-4xl font-black tracking-tight text-white drop-shadow-md leading-none">
+                        {brand.name}
+                      </span>
+                      <span className="text-[10px] tracking-[0.25em] uppercase text-[#c8a951] group-hover:text-white mt-2 transition-colors">
+                        Authorized
                       </span>
                     </div>
                   )}
-                  <p className="font-semibold text-xs md:text-sm truncate text-[#1e3a5f] group-hover:text-[#c8a951] transition-colors">
-                    {brand.name}
-                  </p>
                 </Link>
               ))}
             </div>

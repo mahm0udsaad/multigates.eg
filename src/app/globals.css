@@ -58,7 +58,9 @@ html {
   pointer-events: none;
 }
 
-/* Brand marquee — infinite horizontal scroll */
+/* Brand marquee — infinite horizontal scroll.
+   We force LTR on the marquee container so the animation behaves the same
+   in both languages, and we keep the inner text-direction with the page. */
 @keyframes brand-marquee {
   from {
     transform: translateX(0);
@@ -69,9 +71,8 @@ html {
 }
 .animate-brand-marquee {
   animation: brand-marquee 60s linear infinite;
-}
-[dir="rtl"] .animate-brand-marquee {
-  animation-direction: reverse;
+  /* Pin direction so the auto-flip in [dir="rtl"] doesn't push content off-screen */
+  direction: ltr;
 }
 .animate-brand-marquee:hover {
   animation-play-state: paused;

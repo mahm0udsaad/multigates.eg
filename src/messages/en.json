@@ -35,18 +35,42 @@
     "hero": {
       "title": "Your Trusted Partner in Industrial Solutions",
       "subtitle": "Leading supplier of bearings, belts, chains, and industrial components in Egypt and the Middle East",
-      "cta": "Explore Products"
+      "cta": "Explore Products",
+      "badge": "Authorized Distributor Since 1995",
+      "contactSales": "Contact Sales",
+      "stats": {
+        "years": "Years of Experience",
+        "brands": "Authorized Brands",
+        "industries": "Industries Served",
+        "products": "Product Types"
+      }
     },
     "brands": {
       "title": "Our Brands",
-      "subtitle": "We are authorized distributors for world-renowned bearing and industrial component manufacturers"
+      "subtitle": "We are authorized distributors for world-renowned bearing and industrial component manufacturers",
+      "label": "Global Partners"
     },
     "industries": {
       "title": "Industries We Serve",
-      "subtitle": "Providing reliable industrial solutions across diverse sectors"
+      "subtitle": "Providing reliable industrial solutions across diverse sectors",
+      "label": "Sectors We Power",
+      "viewAll": "View all industries"
     },
     "why": {
-      "title": "Why Choose Multi Gates?"
+      "title": "Why Choose Multi Gates?",
+      "label": "The Multi Gates Advantage"
+    },
+    "services": {
+      "label": "Beyond Distribution",
+      "title": "Complete industrial solutions, backed by expertise",
+      "subtitle": "From technical support and cross-reference services to stock management at your site — we deliver more than just products.",
+      "technicalTitle": "Technical Support & After-Sales",
+      "technicalDesc": "Expert guidance from specification to installation and beyond.",
+      "crossRefTitle": "Cross Reference Service",
+      "crossRefDesc": "Find equivalent bearings across brands in seconds.",
+      "genuineTitle": "Genuine Products, Guaranteed",
+      "genuineDesc": "Every product sourced directly through authorized channels.",
+      "explore": "Explore all services"
     },
     "features": {
       "authorized": {
@@ -69,7 +93,8 @@
     "cta": {
       "title": "Ready to Get Started?",
       "subtitle": "Contact our team to find the right industrial components for your needs",
-      "button": "Contact Us"
+      "button": "Contact Us",
+      "browse": "Browse Brands"
     },
     "values": {
       "missionTitle": "Mission Statement",
@@ -409,6 +434,8 @@
     "office": "Office",
     "showroom": "Showroom",
     "tagline": "Authorized distributor for 17+ international brands",
-    "description": "Authorized distributor for world-renowned bearings, belts, chains, and industrial components across Egypt and the Middle East."
+    "description": "Authorized distributor for world-renowned bearings, belts, chains, and industrial components across Egypt and the Middle East.",
+    "officeAddress": "31 B Champollion Street, Ma'arouf, Qasr an Nile, Cairo",
+    "showroomAddress": "7 Muhammed Helmy Ibrahim Street, Cairo"
   }
 }

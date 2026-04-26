@@ -143,9 +143,7 @@ export function Footer() {
                 />
                 <div className="text-gray-300 text-sm">
                   <div className="font-medium text-white mb-0.5">{t("office")}</div>
-                  31 B Champollion Street,
-                  <br />
-                  Ma&apos;arouf, Qasr an Nile, Cairo
+                  {t("officeAddress")}
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -155,9 +153,7 @@ export function Footer() {
                 />
                 <div className="text-gray-300 text-sm">
                   <div className="font-medium text-white mb-0.5">{t("showroom")}</div>
-                  7 Muhammed Helmy Ibrahim Street,
-                  <br />
-                  Cairo
+                  {t("showroomAddress")}
                 </div>
               </li>
             </ul>

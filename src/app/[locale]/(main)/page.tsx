@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { getBrands, getIndustries } from '@/lib/data';
 import { Link } from '@/i18n/routing';
 import {
@@ -15,6 +15,8 @@ import Image from 'next/image';
 
 export default async function HomePage() {
   const t = await getTranslations('home');
+  const locale = await getLocale();
+  const isArabic = locale === 'ar';
   const brands = await getBrands();
   const industries = await getIndustries();
 
@@ -42,10 +44,10 @@ export default async function HomePage() {
   ];
 
   const stats = [
-    { value: '30+', label: 'Years of Experience' },
-    { value: '17+', label: 'Authorized Brands' },
-    { value: '18+', label: 'Industries Served' },
-    { value: '100+', label: 'Product Types' },
+    { value: '30+', label: t('hero.stats.years') },
+    { value: '17+', label: t('hero.stats.brands') },
+    { value: '18+', label: t('hero.stats.industries') },
+    { value: '100+', label: t('hero.stats.products') },
   ];
 
   return (
@@ -81,7 +83,7 @@ export default async function HomePage() {
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c8a951]/15 border border-[#c8a951]/30 text-[#c8a951] text-xs font-semibold tracking-wider uppercase mb-6">
               <ShieldCheck size={14} />
-              Authorized Distributor Since 1995
+              {t('hero.badge')}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {t('hero.title')}
@@ -104,7 +106,7 @@ export default async function HomePage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold transition-all duration-300 border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/40"
               >
-                Contact Sales
+                {t('hero.contactSales')}
               </Link>
             </div>
           </div>
@@ -134,7 +136,7 @@ export default async function HomePage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
-              Global Partners
+              {t('brands.label')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">
               {t('brands.title')}
@@ -145,7 +147,7 @@ export default async function HomePage() {
           </div>
 
           {/* Continuously scrolling brand marquee (hover to pause) */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden" dir="ltr">
             {/* Edge fade masks */}
             <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-gray-50 to-transparent" />
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-gray-50 to-transparent" />
@@ -242,7 +244,7 @@ export default async function HomePage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
-              Sectors We Power
+              {t('industries.label')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">
               {t('industries.title')}
@@ -283,23 +285,20 @@ export default async function HomePage() {
                 href={`/industries`}
                 className="group relative rounded-xl overflow-hidden bg-gray-100 aspect-[4/3] shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                {industry.image_url ? (
-                  <>
-                    <Image
-                      src={industry.image_url}
-                      alt={industry.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f35]/90 via-[#0f1f35]/30 to-transparent" />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
+                {industry.image_url && (
+                  <Image
+                    src={industry.image_url}
+                    alt={isArabic ? (industry.name_ar || industry.name) : industry.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
                 )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f35]/90 via-[#0f1f35]/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-3 md:p-4">
                   <h3 className="text-sm md:text-base font-bold text-white leading-tight">
-                    {industry.name}
+                    {isArabic ? (industry.name_ar || industry.name) : industry.name}
                   </h3>
                 </div>
               </Link>
@@ -313,7 +312,7 @@ export default async function HomePage() {
               href="/industries"
               className="inline-flex items-center gap-2 text-[#1e3a5f] font-semibold hover:text-[#c8a951] transition-colors"
             >
-              View all industries
+              {t('industries.viewAll')}
               <ArrowRight size={16} className="rtl:rotate-180" />
             </Link>
           </div>
@@ -325,7 +324,7 @@ export default async function HomePage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
-              The Multi Gates Advantage
+              {t('why.label')}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f]">
               {t('why.title')}
@@ -365,34 +364,30 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
-                Beyond Distribution
+                {t('services.label')}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-5 text-[#1e3a5f]">
-                Complete industrial solutions, backed by expertise
+                {t('services.title')}
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                From technical support and cross-reference services to stock
-                management at your site — we deliver more than just products.
+                {t('services.subtitle')}
               </p>
               <div className="space-y-4 mb-8">
                 {[
                   {
                     icon: Wrench,
-                    title: 'Technical Support & After-Sales',
-                    description:
-                      'Expert guidance from specification to installation and beyond.',
+                    title: t('services.technicalTitle'),
+                    description: t('services.technicalDesc'),
                   },
                   {
                     icon: Globe2,
-                    title: 'Cross Reference Service',
-                    description:
-                      'Find equivalent bearings across brands in seconds.',
+                    title: t('services.crossRefTitle'),
+                    description: t('services.crossRefDesc'),
                   },
                   {
                     icon: ShieldCheck,
-                    title: 'Genuine Products, Guaranteed',
-                    description:
-                      'Every product sourced directly through authorized channels.',
+                    title: t('services.genuineTitle'),
+                    description: t('services.genuineDesc'),
                   },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -417,7 +412,7 @@ export default async function HomePage() {
                 href="/services"
                 className="inline-flex items-center gap-2 text-[#1e3a5f] font-semibold hover:text-[#c8a951] transition-colors"
               >
-                Explore all services
+                {t('services.explore')}
                 <ArrowRight size={16} className="rtl:rotate-180" />
               </Link>
             </div>
@@ -430,10 +425,11 @@ export default async function HomePage() {
                     key={industry.id}
                     className="relative aspect-square rounded-xl overflow-hidden shadow-md"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
                     {industry.image_url && (
                       <Image
                         src={industry.image_url}
-                        alt={industry.name}
+                        alt={isArabic ? (industry.name_ar || industry.name) : industry.name}
                         fill
                         sizes="(max-width: 1024px) 50vw, 25vw"
                         className="object-cover"
@@ -441,7 +437,7 @@ export default async function HomePage() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f35]/80 via-transparent to-transparent" />
                     <span className="absolute bottom-2 left-3 right-3 text-white text-xs font-semibold">
-                      {industry.name}
+                      {isArabic ? (industry.name_ar || industry.name) : industry.name}
                     </span>
                   </div>
                 ))}
@@ -484,7 +480,7 @@ export default async function HomePage() {
               href="/brands"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold transition-all duration-300 border-2 border-white/20 text-white hover:bg-white/5 hover:border-white/40"
             >
-              Browse Brands
+              {t('cta.browse')}
             </Link>
           </div>
         </div>

@@ -37,12 +37,12 @@ export function Header({ productsMenu = [] }: HeaderProps) {
   }, [productsMenu, hoveredBrand]);
 
   const navLinks: NavItem[] = [
-    { key: "home", href: "/" },
     { key: "products", href: "/products" },
     { key: "brands", href: "/brands" },
     { key: "partners", href: "/partners" },
     { key: "industries", href: "/industries" },
     { key: "services", href: "/services" },
+    { key: "about", href: "/about" },
     {
       key: "more",
       href: "#",
@@ -58,8 +58,6 @@ export function Header({ productsMenu = [] }: HeaderProps) {
         { key: "news", href: "/news" },
       ],
     },
-    { key: "about", href: "/about" },
-    { key: "contact", href: "/contact" },
   ];
 
   useEffect(() => {
@@ -318,9 +316,18 @@ export function Header({ productsMenu = [] }: HeaderProps) {
                   <Link
                     key={link.key}
                     href={link.href as "/" | "/products" | "/brands" | "/partners" | "/industries" | "/services" | "/about" | "/contact"}
-                    className="text-gray-700 hover:text-[#c8a951] transition-colors font-medium text-sm"
+                    className={`relative font-medium text-sm transition-colors py-1 group ${
+                      pathname === link.href
+                        ? "text-[#c8a951]"
+                        : "text-gray-700 hover:text-[#c8a951]"
+                    }`}
                   >
                     {t(link.key)}
+                    <span
+                      className={`absolute -bottom-0.5 left-0 h-0.5 bg-[#c8a951] transition-all duration-200 ${
+                        pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
                   </Link>
                 );
               })}

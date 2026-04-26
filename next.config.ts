@@ -15,6 +15,16 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https" as const,
+        hostname: "logos.hunter.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "https" as const,
+        hostname: "upload.wikimedia.org",
+        pathname: "/**",
+      },
     ],
   },
 };

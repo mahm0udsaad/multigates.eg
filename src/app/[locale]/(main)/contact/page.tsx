@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { MapPin, Phone, Building, CheckCircle2 } from 'lucide-react';
 
 interface FormData {
@@ -84,6 +84,8 @@ export default function ContactPage({
   params: Promise<{ locale: string }>;
 }) {
   const t = useTranslations('contact');
+  const locale = useLocale();
+  const isAr = locale === 'ar';
   const [formData, setFormData] = useState<FormData>({
     salutation: '',
     fullName: '',
@@ -193,16 +195,23 @@ export default function ContactPage({
     setTimeout(() => setSubmitted(false), 5000);
   };
 
+  // NOTE: Sameh's email of 2026-03-30 mentioned "3 locations" but only sent 2 addresses;
+  // the 3rd was promised in a follow-up that hasn't arrived yet. Add it here when received.
   const locations = [
     {
       title: t('headOffice') || 'Head Office',
-      address: '31 B Champollion, Qasr an Nile, Cairo, Egypt',
+      address: '31 B Champollion Street, Qasr an Nile, Cairo, Egypt',
       icon: Building,
+      mapsUrl:
+        'https://www.google.com/maps/search/?api=1&query=31+Champollion+Street+Qasr+an+Nile+Cairo',
     },
     {
-      title: t('store') || 'Store',
-      address: '7 Muhammed Helmy Ibrahim Street, Champollion Street, Qasr an Nile, Cairo, Egypt',
+      title: t('store') || 'Store / Showroom',
+      address:
+        '7 Muhammed Helmy Ibrahim Street, Ma\u2019arouf, Champollion Street, Qasr an Nile, Cairo, Egypt',
       icon: MapPin,
+      mapsUrl:
+        'https://www.google.com/maps/search/?api=1&query=Muhammed+Helmy+Ibrahim+Street+Qasr+an+Nile+Cairo',
     },
   ];
 
@@ -696,10 +705,11 @@ export default function ContactPage({
                 </div>
               ))}
 
-              {/* Map */}
+              {/* Map — Champollion Street, Qasr an Nile, Cairo */}
               <div className="w-full rounded-lg overflow-hidden border border-gray-200 shadow-sm">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.4726179289527!2d31.234567!3d30.047564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583d7e3a8e8e0d%3A0x123456789!2sCairo%2C%20Egypt!5e0!3m2!1sen!2sus!4v1234567890"
+                  title={isAr ? 'خريطة مواقعنا' : 'Our locations map'}
+                  src="https://www.google.com/maps?q=Champollion+Street,+Qasr+an+Nile,+Cairo,+Egypt&z=16&output=embed"
                   width="100%"
                   height="300"
                   style={{ border: 0 }}

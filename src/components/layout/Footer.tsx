@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Phone, Mail, MapPin, Store } from "lucide-react";
+import { Phone, MapPin, Store } from "lucide-react";
 import Image from "next/image";
 
 // Social icons as inline SVG (lucide v1 doesn't ship brand icons)
@@ -58,9 +58,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-5">
-              Authorized distributor for world-renowned bearings, belts,
-              chains, and industrial components across Egypt and the Middle
-              East.
+              {t("description")}
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -124,22 +122,10 @@ export function Footer() {
                   size={16}
                   className="text-[#c8a951] flex-shrink-0 mt-0.5"
                 />
-                <div className="text-gray-300 text-sm space-y-0.5">
+                <div className="text-gray-300 text-sm space-y-0.5" dir="ltr">
                   <div>+2 02 27731690</div>
                   <div>+2 010 68847541</div>
                 </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail
-                  size={16}
-                  className="text-[#c8a951] flex-shrink-0 mt-0.5"
-                />
-                <a
-                  href="mailto:sameh.ahmed@multigates-co.com"
-                  className="text-gray-300 hover:text-[#c8a951] transition-colors text-sm break-all"
-                >
-                  sameh.ahmed@multigates-co.com
-                </a>
               </li>
             </ul>
           </div>
@@ -147,7 +133,7 @@ export function Footer() {
           {/* Addresses */}
           <div>
             <h3 className="text-base font-semibold mb-5 text-white">
-              Our Locations
+              {t("locations")}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
@@ -156,7 +142,7 @@ export function Footer() {
                   className="text-[#c8a951] flex-shrink-0 mt-0.5"
                 />
                 <div className="text-gray-300 text-sm">
-                  <div className="font-medium text-white mb-0.5">Office</div>
+                  <div className="font-medium text-white mb-0.5">{t("office")}</div>
                   31 B Champollion Street,
                   <br />
                   Ma&apos;arouf, Qasr an Nile, Cairo
@@ -168,7 +154,7 @@ export function Footer() {
                   className="text-[#c8a951] flex-shrink-0 mt-0.5"
                 />
                 <div className="text-gray-300 text-sm">
-                  <div className="font-medium text-white mb-0.5">Showroom</div>
+                  <div className="font-medium text-white mb-0.5">{t("showroom")}</div>
                   7 Muhammed Helmy Ibrahim Street,
                   <br />
                   Cairo
@@ -186,7 +172,7 @@ export function Footer() {
               {t("rights")}.
             </p>
             <p className="text-gray-500 text-xs">
-              Authorized distributor for 17+ international brands
+              {t("tagline")}
             </p>
           </div>
         </div>

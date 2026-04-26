@@ -6,7 +6,7 @@ import {
   getProducts,
   getProductCountsByBrand,
 } from "@/lib/data";
-import { Package, ArrowRight, Grid3X3 } from "lucide-react";
+import { Package, ArrowRight, Grid3X3, Factory, Train, Car, Store, Briefcase } from "lucide-react";
 import Image from "next/image";
 
 interface PageProps {
@@ -67,6 +67,42 @@ export default async function ProductsPage({ params }: PageProps) {
       </section>
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+        {/* Bearings Segments */}
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-2">
+            {isAr ? "قطاعات الرولمان" : "Bearings Segments"}
+          </h2>
+          <p className="text-gray-600 mb-8">
+            {isAr
+              ? "نخدم القطاعات الصناعية والتجارية الكبرى عبر مجموعتنا الكاملة من رولمان البلي."
+              : "We serve major industrial and commercial segments across our full range of rolling bearings."}
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[
+              { icon: Factory, label: isAr ? "صناعي" : "Industry" },
+              { icon: Train, label: isAr ? "السكك الحديدية" : "Railway" },
+              { icon: Car, label: isAr ? "السيارات" : "Automotive" },
+              { icon: Store, label: isAr ? "تجزئة" : "Retail" },
+              { icon: Briefcase, label: isAr ? "القطاع التجاري" : "Trading Sector" },
+            ].map((seg) => {
+              const Icon = seg.icon;
+              return (
+                <div
+                  key={seg.label}
+                  className="bg-white border border-gray-200 rounded-xl p-5 text-center hover:border-[#c8a951]/60 hover:shadow-md transition group"
+                >
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center bg-[#c8a951]/10 group-hover:bg-[#c8a951] transition">
+                    <Icon size={22} className="text-[#c8a951] group-hover:text-[#1e3a5f] transition" />
+                  </div>
+                  <h3 className="text-sm md:text-base font-bold text-[#1e3a5f]">
+                    {seg.label}
+                  </h3>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Categories Section */}
         {categories.length > 0 && (
           <div className="mb-16">

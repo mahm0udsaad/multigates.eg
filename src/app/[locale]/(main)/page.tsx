@@ -132,37 +132,91 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-            {brands.map((brand) => (
-              <Link
-                key={brand.id}
-                href={`/brands/${brand.slug}`}
-                className="group bg-white rounded-xl p-6 border border-gray-100 hover:border-[#c8a951]/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col items-center justify-center min-h-[160px] relative overflow-hidden"
+          {/* Continuously scrolling brand marquee (hover to pause) */}
+          <div className="relative overflow-hidden">
+            {/* Edge fade masks */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-gray-50 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-gray-50 to-transparent" />
+            <div className="flex gap-5 w-max animate-brand-marquee">
+              {[...brands, ...brands].map((brand, idx) => (
+                <Link
+                  key={`${brand.id}-${idx}`}
+                  href={`/brands/${brand.slug}`}
+                  className="group bg-white rounded-xl p-5 border border-gray-100 hover:border-[#c8a951]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center w-[180px] h-[140px] relative overflow-hidden flex-shrink-0"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[#c8a951] scale-x-0 group-hover:scale-x-100 transition-transform origin-left rtl:origin-right" />
+                  {brand.logo_url ? (
+                    <div className="relative w-24 h-16 mb-2 grayscale group-hover:grayscale-0 transition-all">
+                      <Image
+                        src={brand.logo_url}
+                        alt={brand.name}
+                        fill
+                        sizes="120px"
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 mx-auto mb-2 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#1e3a5f] to-[#1e3a5f]/80 text-white">
+                      <span className="text-xl font-black tracking-tight">
+                        {brand.name.substring(0, 3).toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                  <p className="font-semibold text-xs md:text-sm truncate text-[#1e3a5f] group-hover:text-[#c8a951] transition-colors">
+                    {brand.name}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / Code of Ethics / Policy */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: t('values.missionTitle'), body: t('values.missionBody') },
+              { title: t('values.ethicsTitle'), body: t('values.ethicsBody') },
+              { title: t('values.policyTitle'), body: t('values.policyBody') },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="bg-gradient-to-br from-[#1e3a5f]/5 to-white border border-gray-100 rounded-2xl p-7 hover:shadow-lg transition"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-[#c8a951] scale-x-0 group-hover:scale-x-100 transition-transform origin-left rtl:origin-right" />
-                {brand.logo_url ? (
-                  <div className="relative w-28 h-20 mb-3 grayscale group-hover:grayscale-0 transition-all">
-                    <Image
-                      src={brand.logo_url}
-                      alt={brand.name}
-                      fill
-                      sizes="(max-width: 768px) 40vw, 20vw"
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-20 h-20 mx-auto mb-3 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#1e3a5f] to-[#1e3a5f]/80 text-white shadow-inner">
-                    <span className="text-2xl font-black tracking-tight">
-                      {brand.name.substring(0, 3).toUpperCase()}
-                    </span>
-                  </div>
-                )}
-                <p className="font-semibold text-sm md:text-base truncate text-[#1e3a5f] group-hover:text-[#c8a951] transition-colors">
-                  {brand.name}
+                <div className="w-10 h-1 rounded-full bg-[#c8a951] mb-5" />
+                <h3 className="text-xl font-bold mb-3 text-[#1e3a5f]">
+                  {item.title}
+                </h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  {item.body}
                 </p>
-              </Link>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* History of the Bearings Industry */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-10">
+            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
+              {t('bearingHistory.label')}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">
+              {t('bearingHistory.title')}
+            </h2>
+          </div>
+          <div className="space-y-5 text-gray-700 leading-relaxed text-base md:text-lg">
+            <p>{t('bearingHistory.p1')}</p>
+            <p>{t('bearingHistory.p2')}</p>
+            <p>{t('bearingHistory.p3')}</p>
+          </div>
+          <p className="mt-6 text-xs text-gray-500 italic">
+            {t('bearingHistory.source')}
+          </p>
         </div>
       </section>
 

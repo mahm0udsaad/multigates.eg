@@ -68,6 +68,22 @@
       "title": "Ready to Get Started?",
       "subtitle": "Contact our team to find the right industrial components for your needs",
       "button": "Contact Us"
+    },
+    "values": {
+      "missionTitle": "Mission Statement",
+      "missionBody": "We are not only a manufacturer and distributor of bearings — we also contribute to the development of various industries by providing the original bearings. The original bearings mean saving money, time, and effort. They also mean increased production and improved quality.",
+      "ethicsTitle": "Code of Ethics",
+      "ethicsBody": "Treat each customer in a fair, open, and honest manner, and fully comply with all laws that prohibit discrimination.",
+      "policyTitle": "Policy of Our Corporation",
+      "policyBody": "A satisfied client is a repeat client."
+    },
+    "bearingHistory": {
+      "label": "Heritage",
+      "title": "History of the Bearings Industry",
+      "p1": "The invention of the rolling bearing — in the form of wooden rollers supporting, or \"bearing,\" an object being moved — is of great antiquity and may even predate the invention of the wheel.",
+      "p2": "The earliest recovered example of a rolling-element bearing is a wooden ball bearing supporting a rotating table, found in the remains of the Roman Nemi ships in Lake Nemi, Italy. These wrecks have been dated to 40 BC.",
+      "p3": "Leonardo da Vinci included drawings of ball bearings in his design for a helicopter around the year 1500, marking the first recorded use of bearings in an aerospace design. The concept of the caged ball bearing was first described by Galileo in the 17th century, and the first practical caged-roller bearing was invented in the mid-1740s by horologist John Harrison for his H3 marine timekeeper.",
+      "source": "Source: Wikipedia.org"
     }
   },
   "products": {
@@ -261,15 +277,80 @@
   },
   "about": {
     "title": "About Multi Gates",
-    "subtitle": "Your reliable partner for industrial development",
-    "story": "Our Story",
-    "storyText": "Multi Gates for Industrial Development is a leading Egyptian company specializing in the supply and distribution of high-quality industrial components. Based in Cairo, we serve as authorized distributors for over 17 internationally recognized brands, providing bearings, belts, chains, couplings, oil seals, lubricants, and other critical industrial components.",
-    "mission": "Our Mission",
-    "missionText": "To provide reliable, high-quality industrial components and solutions that help our clients maintain efficient operations across all industrial sectors in Egypt and the Middle East.",
-    "vision": "Our Vision",
-    "visionText": "To be the most trusted and comprehensive industrial components supplier in the MENA region, recognized for our product quality, technical expertise, and outstanding customer service.",
-    "officeAddress": "Office Address",
-    "showroomAddress": "Showroom Address"
+    "subtitle": "Your reliable partner for industrial development since 1995",
+    "whoWeAre": {
+      "title": "Who Are We?",
+      "intro": "Multi Gates for Industrial Development is an Egyptian establishment, established in 1995 under Egyptian law. The company operates in the Egyptian market in the field of importing and distributing industrial bearings.",
+      "ntnLine": "Multi Gates is an authorized distributor of NTN Corporation in Egypt — including the brands NTN and SNR.",
+      "ksmLine": "We are the exclusive agent and distributor of KSM Corporation in Egypt and the Middle East.",
+      "dkfLine": "We are the exclusive distributor of the DKF brand in Egypt.",
+      "stcLine": "We are an authorized distributor of STC-STEYR and Deutsche Großwälzlager (DGWL) in Egypt.",
+      "quavalLine": "We are the exclusive agent and distributor of the Quaval brand in Egypt.",
+      "samLine": "We are the exclusive agent, distributor and trademark owner of the SAM brand — a premium Chinese bearing line.",
+      "importedTitle": "We also import the following brands:",
+      "importedList": "FAG & INA, JIB, KINEX, IKO, NMS, TIMKEN, OZAK, STIEBER, NADELLA, HIWIN, KASHIMA, EASE, JMC."
+    },
+    "whatWeDo": {
+      "title": "What We Do",
+      "lead": "Multi Gates is an importer, agent and distributor of all types of rolling bearings in Egypt.",
+      "commercial": "We serve the commercial sector as a main and important source for many trading companies, suppliers and distributors.",
+      "mro": "We serve the MRO sector by supplying high-quality bearings at reasonable prices, and related solutions that ensure reliable maintenance, efficient repairs, and smooth operations for our customers."
+    },
+    "mission": {
+      "title": "Mission Statement",
+      "body": "We are not only a manufacturer and distributor of bearings — we also contribute to the development of various industries by providing the original bearings. The original bearings mean saving money, time, and effort. They also mean increased production and improved quality."
+    },
+    "ethics": {
+      "title": "Code of Ethics",
+      "body": "Treat each customer in a fair, open, and honest manner, and fully comply with all laws that prohibit discrimination."
+    },
+    "policy": {
+      "title": "Policy of Our Corporation",
+      "body": "A satisfied client is a repeat client."
+    },
+    "brandSpotlightTitle": "About Our Key Brands",
+    "ntn": {
+      "title": "Who is NTN?",
+      "body": "NTN Corporation is a Japanese multinational and one of the world's leading manufacturers of bearings, constant velocity joints (CVJs), and other precision mechanical components. Founded in 1918 in Japan and headquartered in Osaka, NTN serves the automotive, industrial, aerospace and energy sectors worldwide. It is known for high quality, durability and reliability, and operates manufacturing plants, sales offices and distribution networks in many countries.",
+      "subBrands": "Sub-brands and product lines: NTN (the famous Japanese brand) · SNR (acquired by NTN in 2008, originally a French company)."
+    },
+    "ksm": {
+      "title": "What is KSM?",
+      "body": "Established in January 1958 in Osaka, Japan by Hiromu Minamiguchi. Core philosophy: \"Higher Quality & Lower Cost.\" KSM is ISO 9001 certified. Their products are known for durability and precision and meet stringent Japanese Industrial Standards (JIS)."
+    },
+    "quaval": {
+      "title": "What is Quaval?",
+      "body": "Quaval is a reliable and trusted Canadian brand, well known in Canada and the United States. Quaval for Industrial Development Inc. is the manufacturer — a Canadian corporation founded in 2019 and headquartered in Quebec, Canada. Quaval is ISO 9001 certified."
+    },
+    "dkf": {
+      "title": "What is DKF?",
+      "body": "Founded in 1904 in Germany and headquartered in Berlin, DKF is a famous and experienced brand recognised all over the world. It is owned by STC-Steyr Wälzlager Deutschland GmbH."
+    },
+    "stcSteyr": {
+      "title": "Who is STC-STEYR & Deutsche Großwälzlager?",
+      "body": "STC-Steyr is an international manufacturer of rolling bearings and accessories, manufacturing in series production at the traditional industrial location of Steyr, Austria, since 1922. Headquartered in Berlin, Germany. High product quality and customised service are the cornerstones of its approach to production. Deutsche Großwälzlager (DGWL) specialises in slewing bearings."
+    },
+    "history": {
+      "title": "Our History",
+      "intro": "Multi Gates for Industrial Development was established in 1995 in a small office in Cairo. At that time, the company's inventory was virtually nonexistent and remained minimal for a long period due to limited capabilities. Our policy then was to purchase on demand to save money and reduce inventory holding costs. With no reliable local sources at first, we eventually decided that if we could not yet import directly, our local sources should at least be trustworthy and competitively priced — so we chose to work with authorized distributors and major importers in the Egyptian market.",
+      "milestones": [
+        { "year": "2000", "title": "First international agreement", "body": "We signed an agreement with a small Japanese manufacturer for a limited range of bearings under the brand name NMS — a reputable brand admired by all our customers. We later signed with another well-known Japanese brand, OZAK." },
+        { "year": "2005", "title": "FAG & INA", "body": "The company began importing the two well-known major brands, FAG and INA, while continuing to distribute NMS and OZAK. During this period we also began attracting commercial-sector clients such as wholesalers and dealers." },
+        { "year": "2010", "title": "ZEN brand added", "body": "We added ZEN to our portfolio — a reputable British-owned brand manufactured in China. We were the authorized distributor for selected items." },
+        { "year": "2015", "title": "Exclusive Kinex distribution", "body": "Our company secured an exclusive contract — signed about a year earlier — to distribute the Slovak company Kinex's products in Egypt." },
+        { "year": "2021", "title": "KSM exclusive agency", "body": "An important milestone year: we signed an exclusive agency agreement with the Japanese company Minamiguchi to distribute its products under the well-known KSM brand. KSM is now a trusted in-demand brand across Egypt's MRO and commercial sectors." },
+        { "year": "2025", "title": "NTN, DKF, Quaval, JIB, STC-STEYR, SAM", "body": "We faced and overcame a major challenge by signing with NTN to become an authorized distributor of NTN and SNR. We also became the exclusive distributor of the German DKF brand (since 1904), the exclusive agent for the Canadian Quaval brand, and the authorized distributor of the German STC-STEYR brand. We also reached an external arrangement to distribute the Korean JIB brand in Egypt and signed with a Chinese manufacturer to produce a private brand for us under the name SAM." }
+      ]
+    },
+    "info": {
+      "title": "Visit Us",
+      "office": "Head Office",
+      "officeDefault": "31 B Champollion, Qasr an Nile, Cairo, Egypt",
+      "showroom": "Showroom",
+      "showroomDefault": "7 Muhammed Helmy Ibrahim Street, Champollion Street, Qasr an Nile, Cairo, Egypt",
+      "phone": "Phone",
+      "phoneDefault": "+2 02 27731690"
+    }
   },
   "contact": {
     "title": "Contact Us",
@@ -319,6 +400,11 @@
     "rights": "All rights reserved",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Information",
-    "followUs": "Follow Us"
+    "followUs": "Follow Us",
+    "locations": "Our Locations",
+    "office": "Office",
+    "showroom": "Showroom",
+    "tagline": "Authorized distributor for 17+ international brands",
+    "description": "Authorized distributor for world-renowned bearings, belts, chains, and industrial components across Egypt and the Middle East."
   }
 }

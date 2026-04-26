@@ -57,3 +57,22 @@ html {
 .no-download img {
   pointer-events: none;
 }
+
+/* Brand marquee — infinite horizontal scroll */
+@keyframes brand-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-brand-marquee {
+  animation: brand-marquee 60s linear infinite;
+}
+[dir="rtl"] .animate-brand-marquee {
+  animation-direction: reverse;
+}
+.animate-brand-marquee:hover {
+  animation-play-state: paused;
+}

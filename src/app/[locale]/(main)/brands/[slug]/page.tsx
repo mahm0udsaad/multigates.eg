@@ -7,6 +7,7 @@ import {
   getCatalogsByBrand,
   getCertificatesByBrand,
 } from "@/lib/data";
+import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 import {
   FileText,
   Award,
@@ -44,17 +45,26 @@ export default async function BrandDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Brand Header */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f1f35] text-white">
+      {/* Brand Header with Background Image */}
+      <section className="relative overflow-hidden text-white">
+        <Image
+          src={HERO_IMAGES.brands}
+          alt="Brand Hero"
+          fill
+          priority
+          className="absolute inset-0 object-cover -z-10"
+        />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/95 via-[#1e3a5f]/85 to-[#0f1f35]/70 -z-5" />
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.06] -z-5"
           style={{
             backgroundImage:
               'linear-gradient(#c8a951 1px, transparent 1px), linear-gradient(90deg, #c8a951 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />
-        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl bg-[#c8a951]/20" />
+        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl bg-[#c8a951]/20 -z-5" />
 
         <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           <Link

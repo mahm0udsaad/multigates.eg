@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { MapPin, Phone, Building, CheckCircle2 } from 'lucide-react';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 interface FormData {
   salutation: string;
@@ -223,16 +224,13 @@ export default function ContactPage({
   return (
     <main className="min-h-screen bg-white">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5a8c] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {t('title')}
-          </h1>
-          <p className="text-lg text-gray-200 max-w-2xl">
-            {t('description')}
-          </p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Get in Touch"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.contact}
+        imageAlt="Get in Touch"
+      />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

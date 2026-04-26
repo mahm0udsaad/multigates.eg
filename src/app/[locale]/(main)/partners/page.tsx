@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { getBrands } from '@/lib/data';
 import Image from 'next/image';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 const COLORS = {
   primary: '#1e3a5f',
@@ -28,28 +29,13 @@ export default async function PartnersPage({ params }: PageProps) {
   return (
     <div className="w-full">
       {/* Page Header */}
-      <section
-        className="relative w-full py-16 md:py-24 px-6"
-        style={{
-          background: `linear-gradient(135deg, ${COLORS.primary} 0%, #0f1f35 100%)`,
-        }}
-      >
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
-            style={{ backgroundColor: COLORS.secondary }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            {t('title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200">
-            {t('subtitle')}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Authorized Network"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.partners}
+        imageAlt="Authorized Network"
+      />
 
       {/* Partners Grid Section */}
       <section className="py-16 md:py-24 px-6">

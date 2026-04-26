@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { getBrands } from "@/lib/data";
+import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 
 export default async function BrandsPage() {
   const t = await getTranslations("brands");
@@ -8,13 +9,13 @@ export default async function BrandsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Page Header */}
-      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5180] text-white py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold mb-2">{t("title")}</h1>
-          <p className="text-lg opacity-90">{t("subtitle")}</p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Global Partners"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.brands}
+        imageAlt="Global Partners"
+      />
 
       {/* Brands Grid */}
       <div className="max-w-6xl mx-auto px-4 py-16">

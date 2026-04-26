@@ -11,6 +11,7 @@ import {
   Database,
   Clock,
 } from 'lucide-react';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 interface Service {
   id: string;
@@ -80,16 +81,13 @@ export default async function ServicesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Header Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#1e3a5f] mb-6">
-            {t('title')}
-          </h1>
-          <p className="text-lg text-gray-600">
-            {t('description')}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="What We Offer"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.services}
+        imageAlt="What We Offer"
+      />
 
       {/* Services Grid */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">

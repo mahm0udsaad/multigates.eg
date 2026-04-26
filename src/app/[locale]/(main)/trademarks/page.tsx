@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 import {
   getBrandBySlug,
   getCertificatesByBrand,
@@ -46,23 +47,13 @@ export default async function TrademarksPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f1f35] text-white">
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#c8a951 1px, transparent 1px), linear-gradient(90deg, #c8a951 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 md:py-20 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Award className="w-10 h-10 text-[#c8a951]" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-xl text-gray-300">{t("subtitle")}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Our IP"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.trademarks}
+        imageAlt="Our IP"
+      />
 
       {/* Trademarks Section */}
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">

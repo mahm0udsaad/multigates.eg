@@ -8,6 +8,7 @@ import {
   FileText,
   ArrowRight,
 } from 'lucide-react';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 export default async function B2BPage() {
   const t = await getTranslations('b2b');
@@ -22,13 +23,13 @@ export default async function B2BPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8c]">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">{t('title')}</h1>
-          <p className="text-lg sm:text-xl opacity-90">{t('subtitle')}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Partnership"
+        title={t('title')}
+        subtitle={t('subtitle')}
+        imageSrc={HERO_IMAGES.b2b}
+        imageAlt="B2B partnerships"
+      />
 
       {/* Services Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">

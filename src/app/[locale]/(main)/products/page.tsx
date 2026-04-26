@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
+import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 import {
   getBrands,
   getTopLevelCategories,
@@ -37,34 +38,13 @@ export default async function ProductsPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f1f35] text-white">
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#c8a951 1px, transparent 1px), linear-gradient(90deg, #c8a951 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl bg-[#c8a951]/20" />
-        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
-          <span className="inline-block text-[11px] font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-3">
-            {isAr ? "كتالوج المنتجات" : "Product Catalog"}
-          </span>
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">{t("title")}</h1>
-          <p className="text-lg text-gray-300 max-w-2xl">{t("subtitle")}</p>
-          <div className="flex items-center gap-6 mt-6 text-sm text-gray-400">
-            <span className="flex items-center gap-2">
-              <Package size={16} className="text-[#c8a951]" />
-              {allProducts.length} {isAr ? "منتج" : "Products"}
-            </span>
-            <span className="flex items-center gap-2">
-              <Grid3X3 size={16} className="text-[#c8a951]" />
-              {brands.length} {isAr ? "علامة تجارية" : "Brands"}
-            </span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Product Catalog"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.products}
+        imageAlt="Product Catalog"
+      />
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
         {/* Bearings Segments */}

@@ -51,7 +51,19 @@ export default async function HomePage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#0f1f35] via-[#1e3a5f] to-[#0f1f35] text-white">
+      <section className="relative w-full overflow-hidden text-white">
+        {/* Background image */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?auto=format&fit=crop&w=1920&q=80"
+            alt="Industrial bearings and machinery"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/95 via-[#1e3a5f]/85 to-[#0f1f35]/70" />
+        </div>
         {/* Decorative grid */}
         <div
           className="absolute inset-0 opacity-[0.06]"
@@ -235,8 +247,32 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {industries.slice(0, 9).map((industry) => (
+          {(() => {
+            // The client (Sameh, email 2025-09-22) asked for these specific 15 industries
+            // at the bottom of the home page in this exact order.
+            const HOME_INDUSTRY_SLUGS = [
+              'cement',
+              'food',
+              'marine-shipyards',
+              'medical',
+              'mining',
+              'oil',
+              'palm-oil',
+              'power-plants',
+              'pulp-paper',
+              'robotic-automation',
+              'semiconductor',
+              'steel',
+              'textile',
+              'ceramic',
+              'foundry',
+            ];
+            const homeIndustries = HOME_INDUSTRY_SLUGS
+              .map((slug) => industries.find((i) => i.slug === slug))
+              .filter((i): i is NonNullable<typeof i> => Boolean(i));
+            return (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+            {homeIndustries.map((industry) => (
               <Link
                 key={industry.id}
                 href={`/industries`}
@@ -256,19 +292,16 @@ export default async function HomePage() {
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a5f] to-[#0f1f35]" />
                 )}
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <div className="flex items-end justify-between gap-3">
-                    <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
-                      {industry.name}
-                    </h3>
-                    <div className="w-9 h-9 rounded-lg bg-[#c8a951] text-[#1e3a5f] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all">
-                      <ArrowRight size={16} className="rtl:rotate-180" />
-                    </div>
-                  </div>
+                <div className="absolute inset-x-0 bottom-0 p-3 md:p-4">
+                  <h3 className="text-sm md:text-base font-bold text-white leading-tight">
+                    {industry.name}
+                  </h3>
                 </div>
               </Link>
             ))}
           </div>
+            );
+          })()}
 
           <div className="text-center mt-10">
             <Link

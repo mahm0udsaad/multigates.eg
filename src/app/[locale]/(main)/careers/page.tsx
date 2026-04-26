@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
+import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 
 interface FormData {
   fullName: string;
@@ -101,18 +102,13 @@ export default function CareersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header Gradient Section */}
-      <div
-        className="relative h-80 flex items-center justify-center text-white"
-        style={{
-          background: `linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%)`,
-        }}
-      >
-        <div className="text-center px-4">
-          <h1 className="text-5xl font-bold mb-4">{t('title')}</h1>
-          <p className="text-xl text-gray-100">{t('subtitle')}</p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Join Us"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.careers}
+        imageAlt="Join Us"
+      />
 
       {/* Form Section */}
       <div className="max-w-4xl mx-auto px-4 py-12">

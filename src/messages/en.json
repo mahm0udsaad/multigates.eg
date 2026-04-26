@@ -122,6 +122,7 @@
   },
   "services": {
     "title": "Our Services",
+    "subtitle": "Comprehensive industrial solutions and support services for our valued clients",
     "description": "Comprehensive industrial solutions and support services for our valued clients",
     "technicalSupport": "Technical Support & After-Sales Services",
     "catalogs": "Catalogs & Technical Documentation",
@@ -354,6 +355,7 @@
   },
   "contact": {
     "title": "Contact Us",
+    "subtitle": "Get in touch with our team for inquiries, quotes, or technical support",
     "description": "Get in touch with our team for inquiries, quotes, or technical support",
     "formTitle": "Get in Touch",
     "salutation": "Mr/Mrs",

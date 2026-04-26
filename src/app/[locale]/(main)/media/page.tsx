@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { getMedia } from '@/lib/data';
 import Image from 'next/image';
 import MediaFilter from './MediaFilter';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -27,16 +28,13 @@ export default async function MediaPage({ params, searchParams }: Props) {
   return (
     <main className="min-h-screen bg-white">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2d5a8c] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {t('title')}
-          </h1>
-          <p className="text-lg text-gray-200 max-w-2xl">
-            {t('description')}
-          </p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Gallery"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.media}
+        imageAlt="Gallery"
+      />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

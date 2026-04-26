@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { TrendingUp, Globe, Target, Zap, ArrowRight } from 'lucide-react';
+import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 export default async function InvestmentPage() {
   const t = await getTranslations('investment');
@@ -15,12 +16,13 @@ export default async function InvestmentPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8c]">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">{t('title')}</h1>
-          <p className="text-lg sm:text-xl opacity-90">{t('subtitle')}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Invest with us"
+        title={t("title")}
+        subtitle={t("subtitle")}
+        imageSrc={HERO_IMAGES.investment}
+        imageAlt="Invest with us"
+      />
 
       {/* Highlights */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">

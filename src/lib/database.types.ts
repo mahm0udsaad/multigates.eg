@@ -332,6 +332,11 @@ export type Database = {
           slug: string
           sort_order: number
           updated_at: string
+          part_number: string | null
+          bearing_type: string | null
+          bore_diameter_mm: number | null
+          outer_diameter_mm: number | null
+          width_mm: number | null
         }
         Insert: {
           brand_id: string
@@ -347,6 +352,11 @@ export type Database = {
           slug: string
           sort_order?: number
           updated_at?: string
+          part_number?: string | null
+          bearing_type?: string | null
+          bore_diameter_mm?: number | null
+          outer_diameter_mm?: number | null
+          width_mm?: number | null
         }
         Update: {
           brand_id?: string
@@ -362,6 +372,11 @@ export type Database = {
           slug?: string
           sort_order?: number
           updated_at?: string
+          part_number?: string | null
+          bearing_type?: string | null
+          bore_diameter_mm?: number | null
+          outer_diameter_mm?: number | null
+          width_mm?: number | null
         }
         Relationships: [
           {

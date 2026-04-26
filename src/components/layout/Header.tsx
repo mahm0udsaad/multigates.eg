@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
-import { Menu, X, Globe, ChevronDown, Phone, Mail } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, Phone, Mail, Package } from "lucide-react";
 import Image from "next/image";
+import type { BrandWithProducts } from "@/lib/data";
 
 interface NavItem {
   key: string;
@@ -12,9 +13,14 @@ interface NavItem {
   children?: { key: string; href: string }[];
 }
 
-export function Header() {
+interface HeaderProps {
+  productsMenu?: BrandWithProducts[];
+}
+
+export function Header({ productsMenu = [] }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations("nav");
   const locale = useLocale();
@@ -22,6 +28,13 @@ export function Header() {
   const pathname = usePathname();
   const isArabic = locale === "ar";
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Default the hovered brand to the first one so the right column has content.
+  useEffect(() => {
+    if (!hoveredBrand && productsMenu.length > 0) {
+      setHoveredBrand(productsMenu[0].slug);
+    }
+  }, [productsMenu, hoveredBrand]);
 
   const navLinks: NavItem[] = [
     { key: "home", href: "/" },
@@ -34,6 +47,8 @@ export function Header() {
       key: "more",
       href: "#",
       children: [
+        { key: "bearingSearch", href: "/bearing-search" },
+        { key: "crossReference", href: "/cross-reference" },
         { key: "b2b", href: "/b2b" },
         { key: "investment", href: "/investment" },
         { key: "trademarks", href: "/trademarks" },
@@ -68,6 +83,8 @@ export function Header() {
     const newLocale = isArabic ? "en" : "ar";
     router.replace(pathname, { locale: newLocale });
   };
+
+  const activeBrand = productsMenu.find((b) => b.slug === hoveredBrand);
 
   return (
     <header className="sticky top-0 z-50">
@@ -130,8 +147,145 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-5 xl:gap-6" ref={dropdownRef}>
-              {navLinks.map((link) =>
-                link.children ? (
+              {navLinks.map((link) => {
+                // Special case: Products link gets a wide mega-menu on hover
+                if (link.key === "products" && productsMenu.length > 0) {
+                  return (
+                    <div
+                      key={link.key}
+                      className="relative"
+                      onMouseEnter={() => setOpenDropdown("products")}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                      <Link
+                        href="/products"
+                        className="flex items-center gap-1 text-gray-700 hover:text-[#c8a951] transition-colors font-medium text-sm py-3"
+                      >
+                        {t(link.key)}
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform ${
+                            openDropdown === "products" ? "rotate-180" : ""
+                          }`}
+                        />
+                      </Link>
+                      {openDropdown === "products" && (
+                        <div
+                          className={`absolute top-full mt-1 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden ${
+                            isArabic ? "right-0" : "left-0"
+                          }`}
+                          style={{ width: 720 }}
+                        >
+                          <div className="grid grid-cols-12">
+                            {/* Brand list (left column) */}
+                            <div className="col-span-4 bg-gray-50 py-3 max-h-[460px] overflow-y-auto">
+                              {productsMenu.map((brand) => (
+                                <button
+                                  key={brand.slug}
+                                  onMouseEnter={() => setHoveredBrand(brand.slug)}
+                                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-start transition-colors ${
+                                    hoveredBrand === brand.slug
+                                      ? "bg-white text-[#1e3a5f]"
+                                      : "text-gray-700 hover:bg-white"
+                                  }`}
+                                >
+                                  <div className="relative w-8 h-8 rounded bg-white border border-gray-100 flex-shrink-0 overflow-hidden">
+                                    {brand.logo_url ? (
+                                      <Image
+                                        src={brand.logo_url}
+                                        alt={brand.name}
+                                        fill
+                                        sizes="32px"
+                                        className="object-contain p-0.5"
+                                      />
+                                    ) : (
+                                      <div className="w-full h-full flex items-center justify-center text-[10px] font-black text-[#1e3a5f]">
+                                        {brand.name.substring(0, 3)}
+                                      </div>
+                                    )}
+                                  </div>
+                                  <span className="font-semibold text-sm truncate">
+                                    {isArabic
+                                      ? brand.name_ar || brand.name
+                                      : brand.name}
+                                  </span>
+                                </button>
+                              ))}
+                              <Link
+                                href="/brands"
+                                className="block mt-2 mx-4 px-3 py-2 text-center text-xs font-semibold text-[#c8a951] hover:text-[#1e3a5f] border-t border-gray-200 pt-3"
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                {isArabic
+                                  ? "كل العلامات التجارية"
+                                  : "View all brands"}{" "}
+                                →
+                              </Link>
+                            </div>
+                            {/* Bearing types for active brand (right column) */}
+                            <div className="col-span-8 p-5 max-h-[460px] overflow-y-auto">
+                              {activeBrand ? (
+                                <>
+                                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
+                                    <h3 className="font-bold text-[#1e3a5f]">
+                                      {isArabic
+                                        ? activeBrand.name_ar || activeBrand.name
+                                        : activeBrand.name}
+                                    </h3>
+                                    <Link
+                                      href={`/brands/${activeBrand.slug}` as `/brands/${string}`}
+                                      onClick={() => setOpenDropdown(null)}
+                                      className="text-xs font-semibold text-[#c8a951] hover:text-[#1e3a5f]"
+                                    >
+                                      {isArabic ? "عرض الكل" : "See all"} →
+                                    </Link>
+                                  </div>
+                                  {activeBrand.products.length > 0 ? (
+                                    <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                                      {activeBrand.products.map((p) => (
+                                        <li key={p.id}>
+                                          <Link
+                                            href={`/brands/${activeBrand.slug}` as `/brands/${string}`}
+                                            onClick={() => setOpenDropdown(null)}
+                                            className="flex items-start gap-2 px-2 py-1.5 rounded text-sm text-gray-600 hover:text-[#1e3a5f] hover:bg-gray-50"
+                                          >
+                                            <Package
+                                              size={12}
+                                              className="text-[#c8a951] mt-1 flex-shrink-0"
+                                            />
+                                            <span className="leading-snug">
+                                              {isArabic
+                                                ? p.name_ar || p.name
+                                                : p.name}
+                                            </span>
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    <p className="text-sm text-gray-400 italic">
+                                      {isArabic
+                                        ? "لا توجد منتجات بعد."
+                                        : "No products yet."}
+                                    </p>
+                                  )}
+                                </>
+                              ) : (
+                                <p className="text-sm text-gray-400 italic">
+                                  {isArabic
+                                    ? "اختر علامة تجارية لعرض المنتجات."
+                                    : "Hover a brand to see products."}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return link.children ? (
                   <div key={link.key} className="relative">
                     <button
                       onClick={() =>
@@ -150,7 +304,7 @@ export function Header() {
                         {link.children.map((child) => (
                           <Link
                             key={child.key}
-                            href={child.href as "/b2b" | "/investment" | "/trademarks" | "/careers" | "/media" | "/blog" | "/news"}
+                            href={child.href as "/b2b" | "/investment" | "/trademarks" | "/careers" | "/media" | "/blog" | "/news" | "/bearing-search" | "/cross-reference"}
                             className="block px-4 py-2.5 text-gray-700 hover:text-[#c8a951] hover:bg-[#c8a951]/5 transition-colors text-sm font-medium"
                             onClick={() => setOpenDropdown(null)}
                           >
@@ -168,8 +322,8 @@ export function Header() {
                   >
                     {t(link.key)}
                   </Link>
-                )
-              )}
+                );
+              })}
             </div>
 
             {/* Right Section */}
@@ -225,7 +379,7 @@ export function Header() {
                           {link.children.map((child) => (
                             <Link
                               key={child.key}
-                              href={child.href as "/b2b" | "/investment" | "/trademarks" | "/careers" | "/media" | "/blog" | "/news"}
+                              href={child.href as "/b2b" | "/investment" | "/trademarks" | "/careers" | "/media" | "/blog" | "/news" | "/bearing-search" | "/cross-reference"}
                               className="block text-gray-600 hover:text-[#c8a951] transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-50 text-sm"
                               onClick={() => {
                                 setMobileMenuOpen(false);

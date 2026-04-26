@@ -52,17 +52,17 @@ export default async function HomePage() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden text-white">
-        {/* Background image */}
+        {/* Background video (autoplay, muted, loop) */}
         <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?auto=format&fit=crop&w=1920&q=80"
-            alt="Industrial bearings and machinery"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
+          <video
+            src="/video/Ball_bearings_rotating_202604262210.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/95 via-[#1e3a5f]/85 to-[#0f1f35]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/95 via-[#1e3a5f]/80 to-[#0f1f35]/55" />
         </div>
         {/* Decorative grid */}
         <div

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { PageHero, HERO_IMAGES } from "@/components/layout/PageHero";
 import {
-  getBrands,
+  getProductBrands,
   getTopLevelCategories,
   getProducts,
   getProductCountsByBrand,
@@ -20,7 +20,7 @@ export default async function ProductsPage({ params }: PageProps) {
   const isAr = locale === "ar";
 
   const [brands, categories, allProducts, productCounts] = await Promise.all([
-    getBrands(),
+    getProductBrands(),
     getTopLevelCategories(),
     getProducts(),
     getProductCountsByBrand(),

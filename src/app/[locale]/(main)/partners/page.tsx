@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import { getBrands } from '@/lib/data';
-import Image from 'next/image';
+import { getPartnerBrandsWithHover } from '@/lib/data';
+import { BrandLogoTile } from '@/components/ui/BrandLogoTile';
 import { PageHero, HERO_IMAGES } from '@/components/layout/PageHero';
 
 const COLORS = {
@@ -12,19 +12,10 @@ interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-function getInitials(name: string): string {
-  return name
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-}
-
 export default async function PartnersPage({ params }: PageProps) {
   await params;
   const t = await getTranslations('partners');
-  const brands = await getBrands();
+  const brands = await getPartnerBrandsWithHover();
 
   return (
     <div className="w-full">
@@ -46,27 +37,11 @@ export default async function PartnersPage({ params }: PageProps) {
                 key={brand.id}
                 className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 ease-out"
               >
-                <div
-                  className="relative w-full h-48 flex items-center justify-center overflow-hidden"
-                  style={{ backgroundColor: `${COLORS.primary}05` }}
-                >
-                  {brand.logo_url ? (
-                    <Image
-                      src={brand.logo_url}
-                      alt={brand.name}
-                      width={200}
-                      height={150}
-                      className="object-contain p-4 max-h-40 w-auto group-hover:scale-110 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center text-white text-2xl font-bold"
-                      style={{ backgroundColor: COLORS.primary }}
-                    >
-                      {getInitials(brand.name)}
-                    </div>
-                  )}
-                </div>
+                <BrandLogoTile
+                  name={brand.name}
+                  logoUrl={brand.logo_url}
+                  hoverImageUrl={brand.hover_image_url}
+                />
 
                 <div className="p-4 text-center">
                   <h3

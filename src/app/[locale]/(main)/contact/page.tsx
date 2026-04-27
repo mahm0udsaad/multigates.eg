@@ -166,7 +166,6 @@ export default function ContactPage({
       return;
     }
 
-    // Form submission logic - would send to backend with sales@multigates-co.com
     console.log('Form submitted:', formData);
     setSubmitted(true);
 

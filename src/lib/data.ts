@@ -23,6 +23,63 @@ export async function getBrands(): Promise<Brand[]> {
   return data ?? [];
 }
 
+export async function getPartnerBrands(): Promise<Brand[]> {
+  const { data, error } = await supabase
+    .from("eg_brands")
+    .select("*")
+    .eq("is_active", true)
+    .eq("is_partner", true)
+    .order("sort_order");
+  if (error) throw error;
+  return data ?? [];
+}
+
+export async function getProductBrands(): Promise<Brand[]> {
+  const { data, error } = await supabase
+    .from("eg_brands")
+    .select("*")
+    .eq("is_active", true)
+    .eq("is_product_brand", true)
+    .order("sort_order");
+  if (error) throw error;
+  return data ?? [];
+}
+
+export type BrandWithHover = Brand & { hover_image_url: string | null };
+
+async function attachHoverImages(brands: Brand[]): Promise<BrandWithHover[]> {
+  if (brands.length === 0) return [];
+  const ids = brands.map((b) => b.id);
+  const { data: products, error } = await supabase
+    .from("eg_products")
+    .select("brand_id, image_url, sort_order")
+    .in("brand_id", ids)
+    .eq("is_active", true)
+    .not("image_url", "is", null)
+    .order("sort_order");
+  if (error) throw error;
+
+  const firstImageByBrand = new Map<string, string>();
+  for (const p of products ?? []) {
+    if (p.image_url && !firstImageByBrand.has(p.brand_id)) {
+      firstImageByBrand.set(p.brand_id, p.image_url);
+    }
+  }
+
+  return brands.map((b) => ({
+    ...b,
+    hover_image_url: firstImageByBrand.get(b.id) ?? null,
+  }));
+}
+
+export async function getPartnerBrandsWithHover(): Promise<BrandWithHover[]> {
+  return attachHoverImages(await getPartnerBrands());
+}
+
+export async function getProductBrandsWithHover(): Promise<BrandWithHover[]> {
+  return attachHoverImages(await getProductBrands());
+}
+
 export async function getBrandBySlug(slug: string): Promise<Brand | null> {
   const { data, error } = await supabase
     .from("eg_brands")

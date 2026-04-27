@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
-import { Menu, X, Globe, ChevronDown, Phone, Mail, Package, Search } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, Phone, Package, Search } from "lucide-react";
 import Image from "next/image";
 import type { BrandWithProducts } from "@/lib/data";
 
@@ -95,14 +95,7 @@ export function Header({ productsMenu = [] }: HeaderProps) {
               className="flex items-center gap-1.5 hover:text-[#c8a951] transition-colors"
             >
               <Phone size={13} />
-              <span>+2 02 27731690</span>
-            </a>
-            <a
-              href="mailto:sameh.ahmed@multigates-co.com"
-              className="flex items-center gap-1.5 hover:text-[#c8a951] transition-colors"
-            >
-              <Mail size={13} />
-              <span>sameh.ahmed@multigates-co.com</span>
+              <span dir="ltr">+2 02 27731690</span>
             </a>
           </div>
           <div className="text-[#c8a951] font-medium tracking-wide">
@@ -335,25 +328,14 @@ export function Header({ productsMenu = [] }: HeaderProps) {
 
             {/* Right Section */}
             <div className="flex items-center gap-2 md:gap-3">
-              {/* Bearing search */}
-              <form
-                action={isArabic ? "/ar/bearing-search" : "/en/bearing-search"}
-                method="GET"
-                className="hidden xl:flex items-center bg-gray-50 border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#c8a951] transition-colors"
+              {/* Bearing search button */}
+              <Link
+                href="/bearing-search"
+                aria-label={isArabic ? "ابحث برقم القطعة" : "Search bearings"}
+                className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 text-gray-600 hover:text-[#c8a951] hover:border-[#c8a951] transition-colors"
               >
-                <Search size={14} className="ms-3 text-gray-400 flex-shrink-0" />
-                <input
-                  type="text"
-                  name="pn"
-                  placeholder={
-                    isArabic
-                      ? "ابحث برقم القطعة..."
-                      : "Search bearing part #..."
-                  }
-                  className="bg-transparent px-2 py-2 text-sm w-44 focus:outline-none"
-                  aria-label="Search bearings"
-                />
-              </form>
+                <Search size={16} />
+              </Link>
               <Link
                 href="/contact"
                 className="hidden md:inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-[#c8a951] text-[#1e3a5f] hover:bg-[#b89742] transition-colors"
@@ -384,25 +366,15 @@ export function Header({ productsMenu = [] }: HeaderProps) {
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
             <div className="lg:hidden pb-4 border-t border-gray-200">
-              {/* Mobile bearing search */}
-              <form
-                action={isArabic ? "/ar/bearing-search" : "/en/bearing-search"}
-                method="GET"
-                className="flex items-center bg-gray-50 border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#c8a951] mt-4 mx-2"
+              {/* Mobile bearing search link */}
+              <Link
+                href="/bearing-search"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 mt-4 mx-2 px-3 py-2.5 rounded-lg border border-gray-200 text-gray-700 hover:text-[#c8a951] hover:border-[#c8a951] text-sm font-medium"
               >
-                <Search size={16} className="ms-3 text-gray-400 flex-shrink-0" />
-                <input
-                  type="text"
-                  name="pn"
-                  placeholder={
-                    isArabic
-                      ? "ابحث برقم القطعة..."
-                      : "Search bearing part #..."
-                  }
-                  className="bg-transparent px-3 py-2.5 text-sm flex-1 focus:outline-none"
-                  aria-label="Search bearings"
-                />
-              </form>
+                <Search size={16} />
+                {isArabic ? "ابحث برقم القطعة" : "Search bearing part #"}
+              </Link>
               <div className="flex flex-col gap-1 pt-4">
                 {navLinks.map((link) =>
                   link.children ? (

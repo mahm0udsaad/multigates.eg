@@ -7,12 +7,14 @@ interface SafeImageProps {
   src: string;
   alt: string;
   fill?: boolean;
+  width?: number;
+  height?: number;
   sizes?: string;
   className?: string;
   priority?: boolean;
 }
 
-export function SafeImage({ src, alt, fill, sizes, className, priority }: SafeImageProps) {
+export function SafeImage({ src, alt, fill, width, height, sizes, className, priority }: SafeImageProps) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
   return (
@@ -20,6 +22,8 @@ export function SafeImage({ src, alt, fill, sizes, className, priority }: SafeIm
       src={src}
       alt={alt}
       fill={fill}
+      width={fill ? undefined : width}
+      height={fill ? undefined : height}
       sizes={sizes}
       className={className}
       priority={priority}

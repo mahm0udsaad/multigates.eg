@@ -16,6 +16,8 @@ export type Database = {
           description_ar: string | null
           id: string
           is_active: boolean
+          is_partner: boolean
+          is_product_brand: boolean
           logo_url: string | null
           name: string
           name_ar: string | null
@@ -29,6 +31,8 @@ export type Database = {
           description_ar?: string | null
           id?: string
           is_active?: boolean
+          is_partner?: boolean
+          is_product_brand?: boolean
           logo_url?: string | null
           name: string
           name_ar?: string | null
@@ -42,6 +46,8 @@ export type Database = {
           description_ar?: string | null
           id?: string
           is_active?: boolean
+          is_partner?: boolean
+          is_product_brand?: boolean
           logo_url?: string | null
           name?: string
           name_ar?: string | null

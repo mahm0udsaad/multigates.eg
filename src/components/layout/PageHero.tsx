@@ -34,18 +34,18 @@ export function PageHero({
   children,
   align = "left",
 }: PageHeroProps) {
-  const padY =
+  const sizeClasses =
     size === "sm"
-      ? "py-12 md:py-16"
+      ? "min-h-[280px] py-12 md:min-h-[340px] md:py-16"
       : size === "lg"
-      ? "py-20 md:py-28 lg:py-32"
-      : "py-16 md:py-24";
+      ? "min-h-[420px] py-20 md:min-h-[540px] md:py-28 lg:min-h-[620px] lg:py-32"
+      : "min-h-[320px] py-16 md:min-h-[420px] md:py-24";
 
   const alignment = align === "center" ? "text-center mx-auto" : "";
 
   return (
     <section
-      className={`relative w-full overflow-hidden text-white ${padY}`}
+      className={`relative flex w-full items-end overflow-hidden bg-[#10233d] text-white ${sizeClasses}`}
     >
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
@@ -57,8 +57,10 @@ export function PageHero({
           sizes="100vw"
           className="object-cover"
         />
+        {/* Fallback atmosphere in case the remote image is slow or unavailable */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(200,169,81,0.28),_transparent_32%),linear-gradient(135deg,_#173257_0%,_#10233d_55%,_#0b1627_100%)]" />
         {/* Dark gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/95 via-[#1e3a5f]/85 to-[#0f1f35]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f35]/92 via-[#1e3a5f]/82 to-[#0f1f35]/72" />
         {/* Bottom fade so the section blends into the next */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/10 to-transparent" />
       </div>
@@ -75,7 +77,7 @@ export function PageHero({
       {/* Gold glow */}
       <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl bg-[#c8a951]/15 pointer-events-none" />
 
-      <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className={`max-w-3xl ${alignment}`}>
           {eyebrow && (
             <span className="inline-block text-[11px] font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-3">

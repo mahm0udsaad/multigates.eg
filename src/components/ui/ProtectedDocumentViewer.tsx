@@ -95,7 +95,6 @@ export function ProtectedDocumentViewer({
                   src={viewerSrc}
                   title={title}
                   className="h-full w-full border-0"
-                  sandbox="allow-same-origin allow-scripts"
                   referrerPolicy="no-referrer"
                 />
               ) : (

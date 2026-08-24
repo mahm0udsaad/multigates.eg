@@ -219,7 +219,7 @@ export default async function HomePage() {
 
       {/* History of the Bearings Industry */}
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-10">
             <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#c8a951] mb-2">
               {t('bearingHistory.label')}
@@ -228,10 +228,21 @@ export default async function HomePage() {
               {t('bearingHistory.title')}
             </h2>
           </div>
-          <div className="space-y-5 text-gray-700 leading-relaxed text-base md:text-lg">
-            <p>{t('bearingHistory.p1')}</p>
-            <p>{t('bearingHistory.p2')}</p>
-            <p>{t('bearingHistory.p3')}</p>
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="space-y-5 text-gray-700 leading-relaxed text-base md:text-lg">
+              <p>{t('bearingHistory.p1')}</p>
+              <p>{t('bearingHistory.p2')}</p>
+              <p>{t('bearingHistory.p3')}</p>
+            </div>
+            <div className="relative aspect-square overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+              <SafeImage
+                src="https://rvhmhbtacshzcicwrdjn.supabase.co/storage/v1/object/public/product-images/site/home/bearing-history.jpg"
+                alt={t('bearingHistory.title')}
+                fill
+                sizes="(max-width: 1024px) 100vw, 360px"
+                className="object-contain p-4"
+              />
+            </div>
           </div>
           <p className="mt-6 text-xs text-gray-500 italic">
             {t('bearingHistory.source')}

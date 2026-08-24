@@ -12,13 +12,13 @@ import {
   FileText,
   Award,
   ArrowLeft,
-  ExternalLink,
   Lock,
   Package,
   Mail,
   Phone,
 } from "lucide-react";
 import Image from "next/image";
+import { ProtectedDocumentViewer } from "@/components/ui/ProtectedDocumentViewer";
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;
@@ -175,15 +175,13 @@ export default async function BrandDetailPage({ params }: Props) {
                     </div>
                     <div className="flex items-center gap-2">
                       {(catalog.file_url || catalog.external_url) ? (
-                        <a
-                          href={(catalog.external_url || catalog.file_url) ?? undefined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#c8a951] text-[#1e3a5f] font-semibold rounded-lg hover:bg-[#b89742] transition-colors text-sm"
-                        >
-                          <ExternalLink size={14} />
-                          {t("viewProducts")}
-                        </a>
+                        <ProtectedDocumentViewer
+                          src={(catalog.external_url || catalog.file_url)!}
+                          title={isAr ? catalog.title_ar || catalog.title : catalog.title}
+                          isPdf={Boolean(catalog.file_url?.toLowerCase().endsWith('.pdf'))}
+                          isExternal={Boolean(catalog.external_url)}
+                          locale={locale}
+                        />
                       ) : (
                         <span className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-600 font-semibold rounded-lg text-sm">
                           <Lock size={14} />
@@ -217,29 +215,19 @@ export default async function BrandDetailPage({ params }: Props) {
                     key={certificate.id}
                     className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-[#c8a951]/60 hover:shadow-lg transition-all duration-300"
                   >
-                    {/* Certificate preview */}
-                    {certificate.file_url && !isPdf && (
-                      <div className="relative w-full h-64 bg-gray-50">
-                        <Image
-                          src={certificate.file_url}
-                          alt={isAr ? certificate.title_ar || certificate.title : certificate.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-contain p-4"
-                        />
-                      </div>
-                    )}
-                    {certificate.file_url && isPdf && (
-                      <div className="relative w-full h-64 bg-gray-50 flex items-center justify-center">
-                        <a
-                          href={certificate.file_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-col items-center gap-3 text-[#1e3a5f] hover:text-[#c8a951] transition-colors"
-                        >
+                    {certificate.file_url && (
+                      <div className="flex h-48 flex-col items-center justify-center gap-4 bg-gray-50 p-5">
+                        {isPdf ? (
                           <FileText size={48} className="text-[#c8a951]" />
-                          <span className="font-semibold text-sm">{isAr ? "عرض الشهادة" : "View Certificate"}</span>
-                        </a>
+                        ) : (
+                          <Award size={48} className="text-[#c8a951]" />
+                        )}
+                        <ProtectedDocumentViewer
+                          src={certificate.file_url}
+                          title={isAr ? certificate.title_ar || certificate.title : certificate.title}
+                          isPdf={isPdf}
+                          locale={locale}
+                        />
                       </div>
                     )}
                     <div className="p-5">

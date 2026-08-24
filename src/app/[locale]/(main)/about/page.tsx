@@ -27,17 +27,23 @@ interface Milestone {
 }
 
 export default async function AboutPage({ params }: PageProps) {
-  await params;
+  const { locale } = await params;
+  const isAr = locale === 'ar';
   const t = await getTranslations('about');
   const companyInfo = await getCompanyInfo();
   const milestones = (t.raw('history.milestones') as Milestone[]) || [];
 
-  const brandSpotlight: { key: 'ntn' | 'ksm' | 'quaval' | 'dkf' | 'stcSteyr'; subKey?: 'subBrands' }[] = [
-    { key: 'ntn', subKey: 'subBrands' },
-    { key: 'ksm' },
-    { key: 'quaval' },
-    { key: 'dkf' },
-    { key: 'stcSteyr' },
+  const brandSpotlight: {
+    key: 'ntn' | 'ksm' | 'quaval' | 'dkf' | 'stcSteyr' | 'kmr';
+    mono: string;
+    subKey?: 'subBrands';
+  }[] = [
+    { key: 'ntn', mono: 'NTN', subKey: 'subBrands' },
+    { key: 'ksm', mono: 'KSM' },
+    { key: 'quaval', mono: 'QVL' },
+    { key: 'dkf', mono: 'DKF' },
+    { key: 'stcSteyr', mono: 'STC' },
+    { key: 'kmr', mono: 'KMR' },
   ];
 
   return (
@@ -212,41 +218,89 @@ export default async function AboutPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Brand Spotlight */}
+      {/* Brand Spotlight — "Who is..." (distinct editorial layout) */}
       <section
-        className="py-16 md:py-20 px-6"
-        style={{ backgroundColor: `${COLORS.primary}08` }}
+        className="relative py-20 md:py-28 px-6 overflow-hidden"
+        style={{
+          background: `linear-gradient(160deg, ${COLORS.primary} 0%, #0f1f35 60%, #0a1526 100%)`,
+        }}
       >
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-10 text-center"
-            style={{ color: COLORS.primary }}
-          >
-            {t('brandSpotlightTitle')}
-          </h2>
-          <div className="space-y-5">
-            {brandSpotlight.map(({ key, subKey }) => (
-              <div
-                key={key}
-                className="bg-white rounded-2xl p-7 shadow-sm border-l-4 rtl:border-l-0 rtl:border-r-4"
-                style={{ borderColor: COLORS.secondary }}
-              >
-                <h3
-                  className="text-xl md:text-2xl font-bold mb-3"
-                  style={{ color: COLORS.primary }}
+        {/* faint blueprint grid + glow to set this section apart */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(#c8a951 1px, transparent 1px), linear-gradient(90deg, #c8a951 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
+        <div className="absolute -bottom-40 -left-40 w-[560px] h-[560px] rounded-full blur-3xl bg-[#c8a951]/10" />
+
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="inline-block text-[11px] font-semibold tracking-[0.25em] uppercase text-[#c8a951] mb-3">
+              {isAr ? 'الأسماء وراء منتجاتنا' : 'The Names Behind Our Shelves'}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              {t('brandSpotlightTitle')}
+            </h2>
+            <div
+              className="mx-auto mt-5 h-px w-24"
+              style={{ backgroundColor: `${COLORS.secondary}80` }}
+            />
+          </div>
+
+          <div className="space-y-14 md:space-y-20">
+            {brandSpotlight.map(({ key, mono, subKey }, idx) => {
+              const isEven = idx % 2 === 0;
+              return (
+                <div
+                  key={key}
+                  className={`flex flex-col md:flex-row md:items-center gap-6 md:gap-10 ${
+                    isEven ? '' : 'md:flex-row-reverse'
+                  }`}
                 >
-                  {t(`${key}.title`)}
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  {t(`${key}.body`)}
-                </p>
-                {subKey && (
-                  <p className="text-sm text-gray-600 mt-3 italic">
-                    {t(`${key}.${subKey}`)}
-                  </p>
-                )}
-              </div>
-            ))}
+                  {/* Monogram + index rail */}
+                  <div className="flex md:flex-col items-center md:items-stretch gap-4 md:w-44 flex-shrink-0">
+                    <div
+                      className="relative w-20 h-20 md:w-44 md:h-32 rounded-2xl flex items-center justify-center border"
+                      style={{
+                        borderColor: `${COLORS.secondary}55`,
+                        background:
+                          'linear-gradient(135deg, rgba(200,169,81,0.14), rgba(255,255,255,0.02))',
+                      }}
+                    >
+                      <span
+                        className="text-2xl md:text-3xl font-black tracking-tight"
+                        style={{ color: COLORS.secondary }}
+                      >
+                        {mono}
+                      </span>
+                      <span className="absolute -top-3 -left-3 md:-left-3 text-5xl md:text-6xl font-black leading-none text-white/10 select-none">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 border-t border-white/10 pt-6 md:border-t-0 md:pt-0 md:border-s md:border-white/10 md:ps-10">
+
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                      <span style={{ color: COLORS.secondary }}>—&nbsp;</span>
+                      {t(`${key}.title`)}
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      {t(`${key}.body`)}
+                    </p>
+                    {subKey && (
+                      <p className="text-sm text-[#c8a951]/80 mt-3 italic">
+                        {t(`${key}.${subKey}`)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
